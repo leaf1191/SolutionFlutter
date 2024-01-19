@@ -1,3 +1,8 @@
+import 'package:emergency_mate/views/admin/insert_info.dart' as admin;
+import 'package:emergency_mate/views/admin/main_page.dart' as admin;
+import 'package:emergency_mate/views/intro/select_page.dart';
+import 'package:emergency_mate/views/intro/title_page.dart';
+import 'package:emergency_mate/views/patient/main_page.dart' as patient;
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -7,8 +12,15 @@ void main() {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   */
 
-  runApp(const MaterialApp(
-      home: MyApp()
+  runApp(MaterialApp(
+      routes: <String, WidgetBuilder>{
+        '/intro/title' : (BuildContext context) => const TitlePage(),
+        '/intro/select' : (BuildContext context) => const SelectPage(),
+        '/patient/main' : (BuildContext context) => const patient.MainPage(),
+        '/admin/main' : (BuildContext context) => const admin.MainPage(),
+        '/admin/insert' : (BuildContext context) => const admin.InsertInfo(),
+      },
+      initialRoute: '/admin/main',
   ));
 }
 
