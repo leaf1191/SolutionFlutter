@@ -9,7 +9,7 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: IconButton(
-          onPressed: () { Navigator.pushNamed(context, '/admin/insert'); },
+          onPressed: () { Navigator.pushNamed(context, '/admin/register'); },
           icon: const Icon(Icons.add_box_outlined),
         ),
       ),
