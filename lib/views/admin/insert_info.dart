@@ -1,12 +1,22 @@
 import 'package:emergency_mate/viewmodels/admin/insert_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class InsertInfo extends StatelessWidget {
   const InsertInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    if(context.watch<InsertViewModel>().test == null){
+      return const Scaffold(
+        body: SafeArea(
+            child: Center(child: CircularProgressIndicator())
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -59,7 +69,8 @@ class InsertInfo extends StatelessWidget {
           ),
             ElevatedButton(
                 onPressed: () async{
-                  await context.read<InsertViewModel>().insertData();
+                  await context.read<InsertViewModel>().insertData(); // 돌아가는 모션
+                  Fluttertoast.showToast(msg: '성공');
                   // ignore: use_build_context_synchronously
                   Navigator.pop(context);
                 },
