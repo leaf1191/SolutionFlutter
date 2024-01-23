@@ -1,5 +1,6 @@
 import 'package:emergency_mate/viewmodels/admin/insert_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/admin/register_viewmodel.dart';
+import 'package:emergency_mate/viewmodels/intro/intro_viewmodel.dart';
 import 'package:emergency_mate/views/admin/insert_info.dart';
 import 'package:emergency_mate/views/admin/main_page.dart' as admin;
 import 'package:emergency_mate/views/admin/register_page.dart';
@@ -18,7 +19,8 @@ void main() {
 
   runApp(MaterialApp(
       routes: <String, WidgetBuilder>{
-        '/intro/title' : (BuildContext context) => const TitlePage(),
+        '/intro/title' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => IntroViewModel(),
+        child: const TitlePage()),
         '/intro/select' : (BuildContext context) => const SelectPage(),
         '/patient/main' : (BuildContext context) => const patient.MainPage(),
         '/admin/main' : (BuildContext context) => const admin.MainPage(),
@@ -27,7 +29,7 @@ void main() {
         '/admin/insert' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(),
         child: const InsertInfo()),
       },
-      initialRoute: '/admin/main',
+      initialRoute: '/intro/title',
   ));
 }
 
@@ -36,6 +38,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const TitlePage();
   }
 }
