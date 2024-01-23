@@ -1,3 +1,4 @@
+import 'package:emergency_mate/viewmodels/admin/admin_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/admin/insert_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/admin/register_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/intro/intro_viewmodel.dart';
@@ -23,7 +24,8 @@ void main() {
         child: const TitlePage()),
         '/intro/select' : (BuildContext context) => const SelectPage(),
         '/patient/main' : (BuildContext context) => const patient.MainPage(),
-        '/admin/main' : (BuildContext context) => const admin.MainPage(),
+        '/admin/main' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => AdminViewModel(),
+        child: const admin.MainPage()),
         '/admin/register' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => RegisterViewModel(),
         child: const RegisterPage()),
         '/admin/insert' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(),
