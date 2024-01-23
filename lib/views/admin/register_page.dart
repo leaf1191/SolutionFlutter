@@ -7,7 +7,6 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('빌드');
 
     if(context.watch<RegisterViewModel>().test == null){
       return const Scaffold(
