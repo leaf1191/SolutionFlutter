@@ -15,6 +15,7 @@ class AudioModel {
 
   _setSource() async{
     await _player.setSource(AssetSource(_path));
+    _player.setPlayerMode(PlayerMode.lowLatency);
     _player.setReleaseMode(ReleaseMode.loop);
   }
 
