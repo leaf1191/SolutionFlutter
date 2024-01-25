@@ -11,12 +11,18 @@ import 'package:emergency_mate/views/patient/main_page.dart' as patient;
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
   /* splash screen 멈추기
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   */
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // 파이어 베이스 초기화
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(MaterialApp(
       routes: <String, WidgetBuilder>{

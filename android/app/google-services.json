@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "416753957761",
+    "project_id": "emergencymate-dc1ca",
+    "storage_bucket": "emergencymate-dc1ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416753957761:android:9de07266a82277aa0c4680",
+        "android_client_info": {
+          "package_name": "com.example.emergency_mate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "416753957761-0lg22nqpooaj5aajq3apjcgdtlf1p171.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-nFXK22Nsp_6QiO6W_uYzg05n3wz9QTU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "416753957761-0lg22nqpooaj5aajq3apjcgdtlf1p171.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "416753957761-94rvcj3ncuf8ho8g821uflebackrmq77.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.emergencyMate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
