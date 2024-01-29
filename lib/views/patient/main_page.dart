@@ -53,7 +53,7 @@ class MainPage extends StatelessWidget {
                                           child: Text(
                                             '대기 중인 경우, 대기가 취소됩니다.\n     로그아웃 하시겠습니까?',
                                             style: TextStyle(
-                                                fontSize: 18,
+                                                fontSize: 15,
                                                 color: Colors.black,
                                                 decoration: TextDecoration.none),
                                           ),
@@ -134,7 +134,7 @@ class MainPage extends StatelessWidget {
                       flex: 2,
                       child: Center(
                         child: SizedBox(
-                          width: 200,
+                          width: 150,
                           child: Image.asset('assets/logo.png'),
                         ),
                       )
@@ -153,12 +153,44 @@ class MainPage extends StatelessWidget {
                           width: 120,
                           height: 120,
                           color: MAIN_COLOR,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                flex: 5,
+                                child: Container(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Image.asset('assets/menu/heart.png')
+                                ),
+                              ),
+                              const Expanded(
+                                  flex: 2,
+                                  child: Text('건강 데이터',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       BasicButton(
                         width: 120,
                         height: 120,
                         color: MAIN_COLOR,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 5,
+                              child: Container(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Image.asset('assets/menu/ready.png')
+                              ),
+                            ),
+                            const Expanded(
+                                flex: 2,
+                                child: Text('대기 확인',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -171,6 +203,22 @@ class MainPage extends StatelessWidget {
                         width: 120,
                         height: 120,
                         color: MAIN_COLOR,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 5,
+                              child: Container(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Image.asset('assets/menu/introduce.png')
+                              ),
+                            ),
+                            const Expanded(
+                                flex: 2,
+                                child: Text('병원 안내',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
+                            ),
+                          ],
+                        ),
                       ),
                       BasicButton(
                         width: 120,
@@ -180,10 +228,14 @@ class MainPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Expanded(
-                                flex: 3,
-                                child: Icon(Icons.info_outline,size: 70,color: MAIN_COLOR,)
+                                flex: 5,
+                                child: Container(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Image.asset('assets/menu/info.png')
+                                ),
                             ),
-                            Expanded(
+                            const Expanded(
+                                flex: 2,
                                 child: Text('진료 안내',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
                             ),
                           ],
@@ -198,11 +250,27 @@ class MainPage extends StatelessWidget {
                       onTap: (){
                         Navigator.pushNamed(context, '/patient/call');
                       },
-                      child: const BasicButton(
+                      child: BasicButton(
                         width: 300,
                         height: 120,
                         color: WARNING_COLOR,
                         circular: 40,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 5,
+                              child: Container(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Image.asset('assets/menu/siren.png')
+                              ),
+                            ),
+                            const Expanded(
+                                flex: 2,
+                                child: Text('의료진 긴급 호출',style: TextStyle(fontWeight: FontWeight.bold,color: WARNING_COLOR),)
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   )
