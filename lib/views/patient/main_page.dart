@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:emergency_mate/models/audio_model.dart';
+import 'package:emergency_mate/widgets/basic_button.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {
@@ -31,8 +32,8 @@ class MainPage extends StatelessWidget {
                 onLongPressStart: (details){
                   int i = 0;
                   timer = Timer.periodic(const Duration(milliseconds: 1000),
-                    (timer) async {
-                  if (i++ == 2) {
+                    (time) async {
+                  if (i++ == 1) {
                     await model.playAudio();
                   }
                 });
@@ -49,6 +50,17 @@ class MainPage extends StatelessWidget {
                   ),
                   child: const Center(child: Text('롱 재생')),
                 ),
+              ),
+              const BasicButton(
+                width: 100,
+                height: 100,
+                color: Colors.blue,
+              ),
+              const BasicButton(
+                width: 100,
+                height: 100,
+                color: Colors.red,
+                child: Text('data'),
               ),
               ElevatedButton(
                   onPressed: () async{
