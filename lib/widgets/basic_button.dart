@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 
 class BasicButton extends StatelessWidget {
-  const BasicButton({Key? key,double this.width = 1,double this.height = 1,Color this.color = const Color(0xFF000000),Widget? this.child}) : super(key: key);
+  const BasicButton(
+      {Key? key,
+      double this.width = 1,
+      double this.height = 1,
+      Color this.color = const Color(0xFF000000),
+      Widget? this.child,
+      double this.circular = 20})
+      : super(key: key);
   final width;
   final height;
   final color;
   final child;
+  final circular;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +22,7 @@ class BasicButton extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(circular),
         border: Border.all(color: color,width: 2),
         boxShadow: [
           BoxShadow(

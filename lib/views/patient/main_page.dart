@@ -1,6 +1,5 @@
-import 'dart:async';
-
-import 'package:emergency_mate/models/audio_model.dart';
+import 'package:emergency_mate/colors/colors.dart';
+import 'package:emergency_mate/widgets/app_bar.dart';
 import 'package:emergency_mate/widgets/basic_button.dart';
 import 'package:flutter/material.dart';
 
@@ -9,67 +8,122 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer? timer;
-    final model = AudioModel();
     return Scaffold(
       body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                  onPressed: () async{
-                    await model.playAudio();
-                  },
-                  child: const Text('재생')
-              ),
-              GestureDetector(
-                onTap: (){
-                  print('그냥 탭');
-                },
-                onLongPressStart: (details){
-                  int i = 0;
-                  timer = Timer.periodic(const Duration(milliseconds: 1000),
-                    (time) async {
-                  if (i++ == 1) {
-                    await model.playAudio();
-                  }
-                });
-              },
-                onLongPressEnd: (details){
-                  timer?.cancel();
-                },
-                child: Container(
-                  height: 40,
-                  width: 80,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color(0xffeed9f7),
+        child: Column(
+          children: [
+            const SizedBox(
+              width: double.infinity,
+                height: 60,
+                child: BasicAppBar(title: 'MENU',)
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 200,
+              child: Column(
+                children: [
+                  Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: (){
+                        print('탭');
+                      },
+                      child: Container(
+                          width: 100,
+                          height: 30,
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: MAIN_COLOR, width: 2),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: const Center(
+                              child: Text(
+                            '로그아웃',
+                            style: TextStyle(
+                                color: MAIN_COLOR, fontWeight: FontWeight.bold),
+                          ))),
+                    ),
                   ),
-                  child: const Center(child: Text('롱 재생')),
                 ),
+                Expanded(
+                    flex: 2,
+                    child: Center(
+                      child: SizedBox(
+                        width: 200,
+                        child: Image.asset('assets/logo.png'),
+                      ),
+                    )
+                ),],
               ),
-              const BasicButton(
-                width: 100,
-                height: 100,
-                color: Colors.blue,
-              ),
-              const BasicButton(
-                width: 100,
-                height: 100,
-                color: Colors.red,
-                child: Text('data'),
-              ),
-              ElevatedButton(
-                  onPressed: () async{
-                    await model.stopAudio();
-                  },
-                  child: const Text('정지')
-              ),
-            ],
-          ),
+            ),
+            Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, '/patient/heart');
+                      },
+                      child: BasicButton(
+                        width: 150,
+                        height: 150,
+                        color: MAIN_COLOR,
+                      ),
+                    ),
+                    BasicButton(
+                      width: 150,
+                      height: 150,
+                      color: MAIN_COLOR,
+                    ),
+                  ],
+                ),
+            ),
+            Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    BasicButton(
+                      width: 150,
+                      height: 150,
+                      color: MAIN_COLOR,
+                    ),
+                    BasicButton(
+                      width: 150,
+                      height: 150,
+                      color: MAIN_COLOR,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              flex: 3,
+                              child: Icon(Icons.info_outline,size: 70,color: MAIN_COLOR,)
+                          ),
+                          Expanded(
+                              child: Text('진료 안내',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+            ),
+            Expanded(
+                child: Center(
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, '/patient/call');
+                    },
+                    child: const BasicButton(
+                      width: 350,
+                      height: 150,
+                      color: WARNING_COLOR,
+                      circular: 40,
+                    ),
+                  ),
+                )
+            ),
+            const SizedBox(height: 50,)
+          ],
         )
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:emergency_mate/colors/colors.dart';
 import 'package:emergency_mate/viewmodels/admin/admin_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/admin/insert_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/admin/register_viewmodel.dart';
@@ -7,6 +8,8 @@ import 'package:emergency_mate/views/admin/main_page.dart' as admin;
 import 'package:emergency_mate/views/admin/register_page.dart';
 import 'package:emergency_mate/views/intro/select_page.dart';
 import 'package:emergency_mate/views/intro/title_page.dart';
+import 'package:emergency_mate/views/patient/call_page.dart';
+import 'package:emergency_mate/views/patient/heart_page.dart';
 import 'package:emergency_mate/views/patient/main_page.dart' as patient;
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +33,8 @@ void main() async {
         child: const TitlePage()),
         '/intro/select' : (BuildContext context) => const SelectPage(),
         '/patient/main' : (BuildContext context) => const patient.MainPage(),
+        '/patient/heart' : (BuildContext context) => const HeartPage(),
+        '/patient/call' : (BuildContext context) => const CallPage(),
         '/admin/main' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => AdminViewModel(),
         child: const admin.MainPage()),
         '/admin/register' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => RegisterViewModel(),
@@ -37,7 +42,7 @@ void main() async {
         '/admin/insert' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(),
         child: const InsertInfo()),
       },
-      initialRoute: '/intro/title',
+      initialRoute: '/patient/main',
   ));
 }
 
