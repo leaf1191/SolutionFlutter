@@ -36,6 +36,7 @@ class CallPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: WARNING_COLOR,
       body: SafeArea(
         child: Column(
           children: [

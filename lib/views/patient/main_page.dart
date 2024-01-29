@@ -27,7 +27,85 @@ class MainPage extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       onTap: (){
-                        print('탭');
+                        showDialog(
+                            context: context, 
+                            builder: (context){
+                              return Center(
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                                  width: double.infinity,
+                                  height: 180,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20)
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      const Expanded(
+                                          child: Center(
+                                        child: Text(
+                                          '대기 중인 경우, 대기가 취소됩니다.\n     로그아웃 하시겠습니까?',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              decoration: TextDecoration.none),
+                                        ),
+                                      )),
+                                      Expanded(
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              GestureDetector(
+                                                onTap: (){
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Container(
+                                                  width: 150,
+                                                  height: 60,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(color: MAIN_COLOR),
+                                                    borderRadius: BorderRadius.circular(20)
+                                                  ),
+                                                  child: const Center(
+                                                    child: Text('Cancel',
+                                                      style: TextStyle(
+                                                          fontSize: 18,
+                                                          color: MAIN_COLOR,
+                                                          decoration: TextDecoration.none),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: (){
+                                                  print('탭');
+                                                },
+                                                child: Container(
+                                                  width: 150,
+                                                  height: 60,
+                                                  decoration: BoxDecoration(
+                                                    color: MAIN_COLOR,
+                                                    borderRadius: BorderRadius.circular(20)
+                                                  ),
+                                                  child: const Center(
+                                                    child: Text('OK',
+                                                      style: TextStyle(
+                                                          fontSize: 18,
+                                                          color: Colors.white,
+                                                          decoration: TextDecoration.none),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }
+                        );
                       },
                       child: Container(
                           width: 100,
