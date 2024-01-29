@@ -171,25 +171,30 @@ class MainPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      BasicButton(
-                        width: 120,
-                        height: 120,
-                        color: MAIN_COLOR,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              flex: 5,
-                              child: Container(
-                                  padding: const EdgeInsets.all(12),
-                                  child: Image.asset('assets/menu/ready.png')
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.pushNamed(context, '/patient/wait');
+                        },
+                        child: BasicButton(
+                          width: 120,
+                          height: 120,
+                          color: MAIN_COLOR,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                flex: 5,
+                                child: Container(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Image.asset('assets/menu/ready.png')
+                                ),
                               ),
-                            ),
-                            const Expanded(
-                                flex: 2,
-                                child: Text('대기 확인',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
-                            ),
-                          ],
+                              const Expanded(
+                                  flex: 2,
+                                  child: Text('대기 확인',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

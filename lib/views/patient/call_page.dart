@@ -40,10 +40,57 @@ class CallPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
                 height: 60,
                 child: BackAppBar(back: 'Home',title: '긴급 호출',color: WARNING_COLOR,)
             ),
+            const Expanded(
+                child: Center(child: Text('의료진 호출버튼',style: TextStyle(color: Colors.white,fontSize: 18),))
+            ),
+            Expanded(
+                flex: 3,
+                child: Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: const Offset(0, 5),
+                        color: Colors.black.withOpacity(0.5),
+                        blurRadius: 10
+                      ),
+                    ]
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 40,),
+                      Expanded(
+                          flex: 2,
+                          child: Container(
+                              margin: const EdgeInsets.all(30),
+                              child: Image.asset('assets/sos.png')
+                          ),
+                      ),
+                      const Expanded(
+                          child: Text('3초 간 눌러주세요.',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: WARNING_COLOR),)
+                      ),
+                    ],
+                  ),
+                ),
+            ),
+            const Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.report_problem_outlined,color: Colors.white,size: 50,),
+                    SizedBox(width: 5,),
+                    Text('의료진의 도움이 필요한\n긴급 시에만 눌러주세요.',style: TextStyle(fontSize: 18,color: Colors.white),)
+                  ],
+                )
+            ),
+            const SizedBox(height: 50,)
           ],
         ),
       ),

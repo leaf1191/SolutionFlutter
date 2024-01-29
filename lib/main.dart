@@ -11,6 +11,7 @@ import 'package:emergency_mate/views/intro/title_page.dart';
 import 'package:emergency_mate/views/patient/call_page.dart';
 import 'package:emergency_mate/views/patient/heart_page.dart';
 import 'package:emergency_mate/views/patient/main_page.dart' as patient;
+import 'package:emergency_mate/views/patient/wait_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -36,6 +37,7 @@ void main() async {
         '/patient/main' : (BuildContext context) => const patient.MainPage(),
         '/patient/heart' : (BuildContext context) => const HeartPage(),
         '/patient/call' : (BuildContext context) => const CallPage(),
+        '/patient/wait' : (BuildContext context) => const WaitPage(),
         '/admin/main' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => AdminViewModel(),
         child: const admin.MainPage()),
         '/admin/register' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => RegisterViewModel(),
