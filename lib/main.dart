@@ -27,6 +27,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   runApp(MaterialApp(
       routes: <String, WidgetBuilder>{
         '/intro/title' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => IntroViewModel(),
