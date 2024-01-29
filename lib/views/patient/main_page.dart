@@ -150,14 +150,14 @@ class MainPage extends StatelessWidget {
                           Navigator.pushNamed(context, '/patient/heart');
                         },
                         child: BasicButton(
-                          width: 150,
-                          height: 150,
+                          width: 120,
+                          height: 120,
                           color: MAIN_COLOR,
                         ),
                       ),
                       BasicButton(
-                        width: 150,
-                        height: 150,
+                        width: 120,
+                        height: 120,
                         color: MAIN_COLOR,
                       ),
                     ],
@@ -168,13 +168,13 @@ class MainPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       BasicButton(
-                        width: 150,
-                        height: 150,
+                        width: 120,
+                        height: 120,
                         color: MAIN_COLOR,
                       ),
                       BasicButton(
-                        width: 150,
-                        height: 150,
+                        width: 120,
+                        height: 120,
                         color: MAIN_COLOR,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -199,15 +199,15 @@ class MainPage extends StatelessWidget {
                         Navigator.pushNamed(context, '/patient/call');
                       },
                       child: const BasicButton(
-                        width: 350,
-                        height: 150,
+                        width: 300,
+                        height: 120,
                         color: WARNING_COLOR,
                         circular: 40,
                       ),
                     ),
                   )
               ),
-              const SizedBox(height: 50,)
+              const SizedBox(height: 20,)
             ],
           ),
         )
