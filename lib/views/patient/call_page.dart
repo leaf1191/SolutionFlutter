@@ -61,7 +61,7 @@ class CallPage extends StatelessWidget {
                             flex: 2,
                             child: Container(
                                 margin: const EdgeInsets.all(30),
-                                child: Image.asset('assets/sos.png')
+                                child: Image.asset('assets/call/sos.png')
                             ),
                         ),
                         const Expanded(
@@ -72,13 +72,16 @@ class CallPage extends StatelessWidget {
                   ),
                 ),
             ),
-            const Expanded(
+            Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.report_problem_outlined,color: Colors.white,size: 50,),
-                    SizedBox(width: 5,),
-                    Text('의료진의 도움이 필요한\n긴급 시에만 눌러주세요.',style: TextStyle(fontSize: 18,color: Colors.white),)
+                    SizedBox(
+                        width: 50,
+                        child: Image.asset('assets/call/caution.png')
+                    ),
+                    const SizedBox(width: 5,),
+                    const Text('의료진의 도움이 필요한\n긴급 시에만 눌러주세요.',style: TextStyle(fontSize: 18,color: Colors.white),)
                   ],
                 )
             ),

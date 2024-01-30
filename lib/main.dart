@@ -48,7 +48,7 @@ void main() async {
           '/admin/insert' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(),
           child: const InsertInfo()),
         },
-        initialRoute: '/patient/main',
+        initialRoute: '/intro/title',
     ),
   ));
 }
