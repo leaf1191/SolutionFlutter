@@ -1,13 +1,21 @@
 import 'package:emergency_mate/colors/colors.dart';
+import 'package:emergency_mate/viewmodels/patient/patient_viewmodel.dart';
 import 'package:emergency_mate/widgets/app_bar.dart';
 import 'package:emergency_mate/widgets/basic_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.read<PatientViewModel>();
+
+    if(!(context.watch<PatientViewModel>().initComplete)){
+      provider.initModel();
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Container(

@@ -1,40 +1,19 @@
-/*
-GestureDetector(
-                onTap: (){
-                  print('그냥 탭');
-                },
-                onLongPressStart: (details){
-                  int i = 0;
-                  timer = Timer.periodic(const Duration(milliseconds: 1000),
-                    (time) async {
-                  if (i++ == 1) {
-                    await model.playAudio();
-                  }
-                });
-              },
-                onLongPressEnd: (details){
-                  timer?.cancel();
-                },
-                child: Container(
-                  height: 40,
-                  width: 80,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color(0xffeed9f7),
-                  ),
-                  child: const Center(child: Text('롱 재생')),
-                ),
-              ),
- */
+import 'dart:async';
+
 import 'package:emergency_mate/colors/colors.dart';
+import 'package:emergency_mate/viewmodels/patient/patient_viewmodel.dart';
 import 'package:emergency_mate/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CallPage extends StatelessWidget {
   const CallPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.read<PatientViewModel>();
+    Timer? timer;
+
     return Scaffold(
       backgroundColor: WARNING_COLOR,
       body: SafeArea(
@@ -49,34 +28,47 @@ class CallPage extends StatelessWidget {
             ),
             Expanded(
                 flex: 3,
-                child: Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.all(30),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        offset: const Offset(0, 5),
-                        color: Colors.black.withOpacity(0.5),
-                        blurRadius: 10
-                      ),
-                    ]
-                  ),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 40,),
-                      Expanded(
-                          flex: 2,
-                          child: Container(
-                              margin: const EdgeInsets.all(30),
-                              child: Image.asset('assets/sos.png')
-                          ),
-                      ),
-                      const Expanded(
-                          child: Text('3초 간 눌러주세요.',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: WARNING_COLOR),)
-                      ),
-                    ],
+                child: GestureDetector(
+                  onLongPressStart: (details) {
+                    int i = 0;
+                    timer = Timer.periodic(const Duration(milliseconds: 700), (timer) async {
+                      if(i++ == 1){
+                        await provider.playAudio();
+                      }
+                    });
+                  },
+                  onLongPressEnd: (details){
+                    timer?.cancel();
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.all(30),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 5),
+                          color: Colors.black.withOpacity(0.5),
+                          blurRadius: 10
+                        ),
+                      ]
+                    ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 40,),
+                        Expanded(
+                            flex: 2,
+                            child: Container(
+                                margin: const EdgeInsets.all(30),
+                                child: Image.asset('assets/sos.png')
+                            ),
+                        ),
+                        const Expanded(
+                            child: Text('3초 간 눌러주세요.',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: WARNING_COLOR),)
+                        ),
+                      ],
+                    ),
                   ),
                 ),
             ),

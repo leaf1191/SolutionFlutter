@@ -3,6 +3,7 @@ import 'package:emergency_mate/viewmodels/admin/admin_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/admin/insert_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/admin/register_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/intro/intro_viewmodel.dart';
+import 'package:emergency_mate/viewmodels/patient/patient_viewmodel.dart';
 import 'package:emergency_mate/views/admin/insert_info.dart';
 import 'package:emergency_mate/views/admin/main_page.dart' as admin;
 import 'package:emergency_mate/views/admin/register_page.dart';
@@ -29,23 +30,26 @@ void main() async {
   );
 
 
-  runApp(MaterialApp(
-      routes: <String, WidgetBuilder>{
-        '/intro/title' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => IntroViewModel(),
-        child: const TitlePage()),
-        '/intro/select' : (BuildContext context) => const SelectPage(),
-        '/patient/main' : (BuildContext context) => const patient.MainPage(),
-        '/patient/heart' : (BuildContext context) => const HeartPage(),
-        '/patient/call' : (BuildContext context) => const CallPage(),
-        '/patient/wait' : (BuildContext context) => const WaitPage(),
-        '/admin/main' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => AdminViewModel(),
-        child: const admin.MainPage()),
-        '/admin/register' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => RegisterViewModel(),
-        child: const RegisterPage()),
-        '/admin/insert' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(),
-        child: const InsertInfo()),
-      },
-      initialRoute: '/patient/main',
+  runApp(ChangeNotifierProvider(
+    create: (BuildContext context) => PatientViewModel(),
+    child: MaterialApp(
+        routes: <String, WidgetBuilder>{
+          '/intro/title' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => IntroViewModel(),
+          child: const TitlePage()),
+          '/intro/select' : (BuildContext context) => const SelectPage(),
+          '/patient/main' : (BuildContext context) => const patient.MainPage(),
+          '/patient/heart' : (BuildContext context) => const HeartPage(),
+          '/patient/call' : (BuildContext context) => const CallPage(),
+          '/patient/wait' : (BuildContext context) => const WaitPage(),
+          '/admin/main' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => AdminViewModel(),
+          child: const admin.MainPage()),
+          '/admin/register' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => RegisterViewModel(),
+          child: const RegisterPage()),
+          '/admin/insert' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(),
+          child: const InsertInfo()),
+        },
+        initialRoute: '/patient/main',
+    ),
   ));
 }
 
