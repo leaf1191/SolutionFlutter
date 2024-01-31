@@ -87,7 +87,7 @@ class WaitPage extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(child: Container(
+                                Expanded(flex: 5,child: Container(
                                       margin: const EdgeInsets.symmetric(horizontal: 20),
                                       child: const Row(
                                         children: [
@@ -97,7 +97,7 @@ class WaitPage extends StatelessWidget {
                                         ],
                                       ),
                                     ),),
-                                Expanded(child: Container(
+                                Expanded(flex: 5,child: Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 20),
                                   child: const Row(
                                     children: [
@@ -107,7 +107,7 @@ class WaitPage extends StatelessWidget {
                                     ],
                                   ),
                                 )),
-                                Expanded(child: Container(
+                                Expanded(flex: 5,child: Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 20),
                                   child: const Row(
                                     children: [
@@ -117,19 +117,19 @@ class WaitPage extends StatelessWidget {
                                     ],
                                   ),
                                 )),
-                                Expanded(child: Container(
+                                Expanded(flex: 3,child: Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 20),
                                   child: const Text('연락처',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 20),),
                                 )),
-                                Expanded(child: Container(
+                                Expanded(flex: 3,child: Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 20),
                                   child: const Text('010-1234-5678',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                                 )),
-                                Expanded(child: Container(
+                                Expanded(flex: 3,child: Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 20),
                                   child: const Text('보호자 연락처',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 20),),
                                 )),
-                                Expanded(child: Container(
+                                Expanded(flex: 3,child: Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 20),
                                   child: const Text('010-1234-5678',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                                 )),
