@@ -36,6 +36,7 @@ dependencies:
   audioplayers: ^5.2.1
   flutter_launcher_icons: ^0.13.1
   firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
 
 
   # The following adds the Cupertino Icons font to your application.

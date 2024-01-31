@@ -1,20 +1,8 @@
-import 'package:emergency_mate/colors/colors.dart';
-import 'package:emergency_mate/viewmodels/admin/admin_viewmodel.dart';
-import 'package:emergency_mate/viewmodels/admin/insert_viewmodel.dart';
-import 'package:emergency_mate/viewmodels/admin/register_viewmodel.dart';
-import 'package:emergency_mate/viewmodels/intro/intro_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/patient/patient_viewmodel.dart';
-import 'package:emergency_mate/views/admin/insert_info.dart';
-import 'package:emergency_mate/views/admin/main_page.dart' as admin;
-import 'package:emergency_mate/views/admin/register_page.dart';
-import 'package:emergency_mate/views/intro/select_page.dart';
 import 'package:emergency_mate/views/intro/title_page.dart';
-import 'package:emergency_mate/views/patient/call_page.dart';
-import 'package:emergency_mate/views/patient/heart_page.dart';
-import 'package:emergency_mate/views/patient/main_page.dart' as patient;
-import 'package:emergency_mate/views/patient/wait_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:emergency_mate/route/page_route.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -33,21 +21,7 @@ void main() async {
   runApp(ChangeNotifierProvider(
     create: (BuildContext context) => PatientViewModel(),
     child: MaterialApp(
-        routes: <String, WidgetBuilder>{
-          '/intro/title' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => IntroViewModel(),
-          child: const TitlePage()),
-          '/intro/select' : (BuildContext context) => const SelectPage(),
-          '/patient/main' : (BuildContext context) => const patient.MainPage(),
-          '/patient/heart' : (BuildContext context) => const HeartPage(),
-          '/patient/call' : (BuildContext context) => const CallPage(),
-          '/patient/wait' : (BuildContext context) => const WaitPage(),
-          '/admin/main' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => AdminViewModel(),
-          child: const admin.MainPage()),
-          '/admin/register' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => RegisterViewModel(),
-          child: const RegisterPage()),
-          '/admin/insert' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(),
-          child: const InsertInfo()),
-        },
+        routes: routes,
         initialRoute: '/intro/title',
     ),
   ));

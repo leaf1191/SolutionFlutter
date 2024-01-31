@@ -214,46 +214,56 @@ class MainPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        BasicButton(
-                          width: 120,
-                          height: 120,
-                          color: MAIN_COLOR,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                flex: 5,
-                                child: Container(
-                                    padding: const EdgeInsets.all(12),
-                                    child: Image.asset('assets/menu/introduce.png')
-                                ),
-                              ),
-                              const Expanded(
-                                  flex: 2,
-                                  child: Text('병원 안내',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
-                              ),
-                            ],
-                          ),
-                        ),
-                        BasicButton(
-                          width: 120,
-                          height: 120,
-                          color: MAIN_COLOR,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.pushNamed(context, '/patient/guide/hospital');
+                          },
+                          child: BasicButton(
+                            width: 120,
+                            height: 120,
+                            color: MAIN_COLOR,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
                                   flex: 5,
                                   child: Container(
                                       padding: const EdgeInsets.all(12),
-                                      child: Image.asset('assets/menu/info.png')
+                                      child: Image.asset('assets/menu/introduce.png')
                                   ),
-                              ),
-                              const Expanded(
-                                  flex: 2,
-                                  child: Text('진료 안내',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
-                              ),
-                            ],
+                                ),
+                                const Expanded(
+                                    flex: 2,
+                                    child: Text('병원 안내',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.pushNamed(context, '/patient/guide/procedure');
+                          },
+                          child: BasicButton(
+                            width: 120,
+                            height: 120,
+                            color: MAIN_COLOR,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                    flex: 5,
+                                    child: Container(
+                                        padding: const EdgeInsets.all(12),
+                                        child: Image.asset('assets/menu/info.png')
+                                    ),
+                                ),
+                                const Expanded(
+                                    flex: 2,
+                                    child: Text('진료 안내',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
