@@ -8,15 +8,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  /* splash screen 멈추기
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  */
+
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // 파이어 베이스 초기화
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  // 스플래시 시작
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   runApp(ChangeNotifierProvider(
     create: (BuildContext context) => PatientViewModel(),
@@ -25,6 +24,10 @@ void main() async {
         initialRoute: '/intro/title',
     ),
   ));
+
+  await Future.delayed(const Duration(milliseconds: 500));
+  // 스플래시 제거
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {

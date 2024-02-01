@@ -13,7 +13,7 @@ class GuideHospital extends StatelessWidget {
           children: [
             SizedBox(
                 height: 60,
-                child: BackAppBar(title: '벙원 안내',back: 'Home',color: MAIN_COLOR,)
+                child: BackAppBar(title: '병원 안내',back: 'Home',color: MAIN_COLOR,)
             ),
           ],
         ),
