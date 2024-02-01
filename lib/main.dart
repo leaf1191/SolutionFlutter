@@ -1,3 +1,4 @@
+import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
 import 'package:emergency_mate/viewmodels/patient/patient_viewmodel.dart';
 import 'package:emergency_mate/views/intro/title_page.dart';
 import 'package:provider/provider.dart';
@@ -16,16 +17,17 @@ void main() async {
   );
   // 스플래시 시작
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  auth; // auth 초기화
+  await Future.delayed(const Duration(milliseconds: 500));
 
   runApp(ChangeNotifierProvider(
     create: (BuildContext context) => PatientViewModel(),
     child: MaterialApp(
         routes: routes,
-        initialRoute: '/intro/title',
+        initialRoute: auth.hasUser? '/intro/select' : '/intro/title',
     ),
   ));
 
-  await Future.delayed(const Duration(milliseconds: 500));
   // 스플래시 제거
   FlutterNativeSplash.remove();
 }

@@ -1,8 +1,10 @@
 import 'package:emergency_mate/colors/colors.dart';
+import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
 import 'package:emergency_mate/viewmodels/patient/patient_viewmodel.dart';
 import 'package:emergency_mate/widgets/app_bar.dart';
 import 'package:emergency_mate/widgets/basic_button.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
@@ -94,8 +96,14 @@ class MainPage extends StatelessWidget {
                                                     ),
                                                   ),
                                                   GestureDetector(
-                                                    onTap: (){
-                                                      print('탭');
+                                                    onTap: () async{
+                                                      try{
+                                                        await auth.signOut();
+                                                        // ignore: use_build_context_synchronously
+                                                        Navigator.pushNamedAndRemoveUntil(context, '/intro/title', ModalRoute.withName('/'));
+                                                      }catch(e){
+                                                        Fluttertoast.showToast(msg: '로그아웃 실패');
+                                                      }
                                                     },
                                                     child: Container(
                                                       width: 120,

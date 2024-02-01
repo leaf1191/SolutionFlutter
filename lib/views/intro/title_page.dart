@@ -1,5 +1,7 @@
+import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
 import 'package:emergency_mate/viewmodels/intro/intro_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class TitlePage extends StatelessWidget {
@@ -13,10 +15,16 @@ class TitlePage extends StatelessWidget {
         body: SafeArea(
           child: Center(
             child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/intro/select');
+              onPressed: () async {
+                try{
+                  await auth.signInWithGoogle();
+                  // ignore: use_build_context_synchronously
+                  Navigator.pushNamed(context, '/intro/select');
+                } catch(e){
+                  Fluttertoast.showToast(msg: '로그인 실패');
+                }
               },
-              child: const Text('로그인'),
+              child: const Text('구글 로그인'),
             ),
           ),
         ),
