@@ -52,6 +52,7 @@ class Auth {
   }
 
   signOut() async{
+    await GoogleSignIn().disconnect();
     await _fireInstance.signOut();
   }
 
