@@ -99,6 +99,7 @@ class MainPage extends StatelessWidget {
                                                     onTap: () async{
                                                       try{
                                                         await auth.signOut();
+                                                        provider.clearData();
                                                         // ignore: use_build_context_synchronously
                                                         Navigator.pushNamedAndRemoveUntil(context, '/intro/title', ModalRoute.withName('/'));
                                                       }catch(e){

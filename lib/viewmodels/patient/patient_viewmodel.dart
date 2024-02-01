@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 class PatientViewModel extends ChangeNotifier {
 
   bool _initComplete = false;
-  late final AudioModel _audio;
-  late final ExitModel _exit;
+  AudioModel? _audio;
+  ExitModel? _exit;
 
   bool get initComplete => _initComplete;
 
@@ -16,10 +16,17 @@ class PatientViewModel extends ChangeNotifier {
     _initComplete = true;
   }
 
-  playAudio() async => _audio.playAudio();
-  stopAudio() async => _audio.stopAudio();
+  playAudio() async => _audio!.playAudio();
+  stopAudio() async => _audio!.stopAudio();
 
-  Future<bool> exitTapTwice() async => _exit.exitTapTwice();
+  Future<bool> exitTapTwice() async => _exit!.exitTapTwice();
+
+  clearData(){
+    _audio!.clearData();
+    _audio = null;
+    _exit = null;
+    _initComplete = false;
+  }
 
 
 

@@ -29,5 +29,9 @@ class AudioModel {
     _state = PlayerState.stopped;
   }
 
+  clearData(){
+    _player.dispose();
+  }
+
 
 }
