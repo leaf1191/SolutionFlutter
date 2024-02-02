@@ -48,19 +48,21 @@ class BluetoothModel {
 
   }
 
-  blueConnect(BluetoothDevice device) async {
-    _currentDevice = device;
+  Future<bool> blueConnect(BluetoothDevice device) async {
     await _stopScan();
     try{
       await device.connect();
+      _currentDevice = device;
       Fluttertoast.showToast(msg: '디바이스 연결 성공');
+      return true;
     } catch(e){
       Fluttertoast.showToast(msg: '디바이스 연결 실패');
+      return false;
     }
   }
 
   _startScan() async {
-    await FlutterBluePlus.startScan(withNames: ["BT05"],timeout: const Duration(seconds:5));
+    await FlutterBluePlus.startScan(timeout: const Duration(seconds:5));
   }
 
   _stopScan() async{
@@ -69,6 +71,7 @@ class BluetoothModel {
 
   dispose() async {
     await _currentDevice?.disconnect().then((value) => Fluttertoast.showToast(msg: '디바이스 연결 해제'));
+    _currentDevice = null;
     _stateSubscription.cancel();
   }
 

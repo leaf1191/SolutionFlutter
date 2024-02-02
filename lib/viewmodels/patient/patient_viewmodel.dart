@@ -55,12 +55,13 @@ class PatientViewModel extends ChangeNotifier {
     _blueDevice.clear();
     _blueDeviceLength = 0;
     await _blue!.blueScan();
-
   }
 
   blueConnect(int idx) async {
-    await _blue!.blueConnect(_blueDevice[idx].device);
-    await _blueFindServiceAndCharacteristic();
+    var isConnect = await _blue!.blueConnect(_blueDevice[idx].device);
+    if(isConnect){
+      await _blueFindServiceAndCharacteristic();
+    }
   }
 
   _blueFindServiceAndCharacteristic() async{
