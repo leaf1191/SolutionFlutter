@@ -63,6 +63,7 @@ class BluetoothModel {
 
   _startScan() async {
     await FlutterBluePlus.startScan(timeout: const Duration(seconds:5));
+    //withNames: ["BT05"]
   }
 
   _stopScan() async{

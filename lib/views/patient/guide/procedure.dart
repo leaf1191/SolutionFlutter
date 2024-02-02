@@ -11,9 +11,46 @@ class GuideProcedure extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
                 height: 60,
                 child: BackAppBar(title: '진료 안내',back: 'Home',color: MAIN_COLOR,)
+            ),
+            Expanded(
+                flex: 2,
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(20),
+                      height: 20,
+                      child: const Row(
+                        children: [
+                          CircleAvatar(backgroundColor: MAIN_COLOR,radius: 5,),
+                          SizedBox(width: 5,),
+                          Text('응급실 진료절차',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),)
+                        ],
+                      ),
+                    ),
+                    const Expanded(child: SizedBox()),
+                  ],
+                ),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(20),
+                    height: 20,
+                    child: const Row(
+                      children: [
+                        CircleAvatar(backgroundColor: MAIN_COLOR,radius: 5,),
+                        SizedBox(width: 5,),
+                        Text('응급 증상',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),)
+                      ],
+                    ),
+                  ),
+                  const Expanded(child: SizedBox()),
+                ],
+              ),
             ),
           ],
         ),

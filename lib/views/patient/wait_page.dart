@@ -174,30 +174,60 @@ class WaitPage extends StatelessWidget {
                     flex: 4,
                     child: Container(
                       margin: const EdgeInsets.all(30),
-                      child: BasicButton(
+                      child: const BasicButton(
                         width: double.infinity,
                         height: double.infinity,
                         color: MAIN_COLOR,
-                        child: Column(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                  margin: const EdgeInsets.all(20),
-                                  child: Image.asset('assets/wait/user_img.png')
-                              ),
-                            ),
-                            const Expanded(
-                                child: Text('대기 정보 없음',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),)
-                            ),
-                          ],
-                        ),
+                        child: Center(child: Text('대기 정보 없음',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),)),
                       ),
                     ),
                   ),
                 ],
               )),
-              const Expanded(flex: 5,child: SizedBox(),)
+              Expanded(
+                  flex: 5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 30),
+                          child: const Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Text('내 정보',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 10,
+                        child: Container(
+                          margin: const EdgeInsets.all(30),
+                          child: BasicButton(
+                            width: double.infinity,
+                            height: double.infinity,
+                            color: MAIN_COLOR,
+                            child: Column(
+                              children: [
+                                Expanded(
+                                    child: Container(
+                                        margin: const EdgeInsets.fromLTRB(50, 50, 50, 0),
+                                        child: Image.asset('assets/wait/add.png')
+                                    ),
+                                ),
+                                const SizedBox(height: 10,),
+                                const Expanded(
+                                    child: Text('         접수처에서\n추가 정보를 입력하세요.',
+                                      style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR,fontSize: 20),
+                                    ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+              )
             ],
           ),
         ),
