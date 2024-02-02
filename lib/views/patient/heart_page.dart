@@ -20,7 +20,7 @@ class HeartPage extends StatelessWidget {
                 height: 60,
                 child: BackAppBar(title: '건강데이터',back: 'Home',color: MAIN_COLOR,)
             ),
-            const Text('심박수 정보'),
+            Text('${provider.heartBeat ?? '값 없음'}'),
             ElevatedButton(onPressed: () async {
               await provider.blueScan();
             }, child: Text('그냥 테스트 버튼')),

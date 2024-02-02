@@ -8,8 +8,10 @@ class BluetoothModel {
 
   late bool _isSupport;
   late StreamSubscription<BluetoothAdapterState> _stateSubscription;
+  BluetoothDevice? _currentDevice;
 
   bool get isSupport => _isSupport;
+  BluetoothDevice? get currentDevice => _currentDevice;
 
   BluetoothModel(){
     blueSetting();
@@ -24,7 +26,6 @@ class BluetoothModel {
 
     // 블루투스 온 오프 파악
     _stateSubscription = FlutterBluePlus.adapterState.listen((BluetoothAdapterState state) {
-      print(state);
       if (state == BluetoothAdapterState.on) {
         print('스테이트온');
       } else {
@@ -48,18 +49,26 @@ class BluetoothModel {
   }
 
   blueConnect(BluetoothDevice device) async {
-    await device.connect();
+    _currentDevice = device;
+    await _stopScan();
+    try{
+      await device.connect();
+      Fluttertoast.showToast(msg: '디바이스 연결 성공');
+    } catch(e){
+      Fluttertoast.showToast(msg: '디바이스 연결 실패');
+    }
   }
 
   _startScan() async {
-    await FlutterBluePlus.startScan(timeout: const Duration(seconds:15));
+    await FlutterBluePlus.startScan(withNames: ["BT05"],timeout: const Duration(seconds:5));
   }
 
-  stopScan() async{
+  _stopScan() async{
     await FlutterBluePlus.stopScan();
   }
 
-  dispose(){
+  dispose() async {
+    await _currentDevice?.disconnect().then((value) => Fluttertoast.showToast(msg: '디바이스 연결 해제'));
     _stateSubscription.cancel();
   }
 
