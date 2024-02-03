@@ -8,7 +8,7 @@ class WaitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool value = true;
+    bool value = false;
     return Scaffold(
       body: SafeArea(
         child: Container(

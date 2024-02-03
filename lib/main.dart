@@ -1,3 +1,4 @@
+import 'package:emergency_mate/colors/colors.dart';
 import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
 import 'package:emergency_mate/viewmodels/patient/patient_viewmodel.dart';
 import 'package:emergency_mate/views/intro/title_page.dart';
@@ -23,6 +24,9 @@ void main() async {
   runApp(ChangeNotifierProvider(
     create: (BuildContext context) => PatientViewModel(),
     child: MaterialApp(
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: MAIN_COLOR)
+        ),
         routes: routes,
         initialRoute: auth.hasUser? '/intro/select' : '/intro/title',
     ),

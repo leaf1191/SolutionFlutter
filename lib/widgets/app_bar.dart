@@ -64,3 +64,49 @@ class BackAppBar extends StatelessWidget {
   }
 }
 
+class RightWidgetAppBar extends StatelessWidget {
+  const RightWidgetAppBar(
+      {Key? key,
+      required Widget this.widget,
+      required void Function()? this.onTap,
+      String this.title = '',
+      Color this.color = const Color(0xff000000)})
+      : super(key: key);
+  final title;
+  final color;
+  final widget;
+  final onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                offset: const Offset(0, 7),
+                color: Colors.grey.withOpacity(0.5),
+                blurRadius: 5),
+          ]),
+      child: Stack(
+        children: [
+          Center(child: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: color),)),
+          GestureDetector(
+            onTap: onTap,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                width: 50,
+                height: double.infinity,
+                child: widget,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
