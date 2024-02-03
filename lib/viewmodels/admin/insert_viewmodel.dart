@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+enum Gender { male, female}
+
 class InsertViewModel extends ChangeNotifier {
 
   InsertViewModel() {
@@ -8,6 +10,9 @@ class InsertViewModel extends ChangeNotifier {
   }
 
   List? test;
+  Gender? _gender;
+
+  Gender? get gender => _gender;
 
   final nameCon = TextEditingController();
   final birthCon = TextEditingController();
@@ -28,6 +33,11 @@ class InsertViewModel extends ChangeNotifier {
     print(phoneCon.text);
     print(parentCon.text);
     await Future.delayed(Duration(milliseconds: 500));
+  }
+
+  setGender(Gender? value){
+    _gender = value;
+    notifyListeners();
   }
 
 }

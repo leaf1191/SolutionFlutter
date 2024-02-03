@@ -20,8 +20,6 @@ class SelectPage extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () async {
                       Navigator.pushNamedAndRemoveUntil(context, '/patient/main', ModalRoute.withName('/'));
-                      //dio.options.headers['Authorization'] = await auth.user?.getIdToken(); // 토큰 테스트
-
                     },
                     child: const Text('환자')
                 ),

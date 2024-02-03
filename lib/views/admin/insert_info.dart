@@ -11,7 +11,10 @@ class InsertInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    if(context.watch<InsertViewModel>().test == null){
+    final insert = context.read<InsertViewModel>();
+    final watchInsert = context.watch<InsertViewModel>();
+
+    if(watchInsert.test == null){
       return const Scaffold(
         body: SafeArea(
             child: Center(child: CircularProgressIndicator())
@@ -23,13 +26,14 @@ class InsertInfo extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: SizedBox(
-            height: 800,
+            height: 850,
             child: Column(
               children: [
                 const SizedBox(
                   height: 60,
                   child: BasicAppBar(title: '상세 정보',),
                 ),
+                // 최상단
                 Expanded(child: Container(
                   margin: const EdgeInsets.all(20),
                   width: double.infinity,
@@ -37,33 +41,144 @@ class InsertInfo extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('이메일',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
-                      const Expanded(child: Align(alignment: Alignment.centerLeft,child: Text('구글의@자체.이메일',style: TextStyle(fontWeight: FontWeight.bold),))),
+                      const Expanded(child: Align(alignment: Alignment.centerLeft,child: Text('구글의@등록된.이메일',style: TextStyle(fontWeight: FontWeight.bold),))),
                       const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('이름',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
-                      Expanded(child: TextFormField(
-                        textAlignVertical: TextAlignVertical.bottom,
-                        style: const TextStyle(fontSize: 15, height: 1),
-                        decoration: const InputDecoration(
-                            hintText: '이름',
-                            border: OutlineInputBorder()
+                      Expanded(child: SizedBox(
+                        width: 100,
+                        child: TextFormField(
+                          textAlignVertical: TextAlignVertical.bottom,
+                          style: const TextStyle(fontSize: 15, height: 1),
+                          decoration: const InputDecoration(
+                              hintText: '이름',
+                              border: OutlineInputBorder()
+                          ),
                         ),
                       )),
                       const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('생년월일',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
-                      Expanded(child: TextFormField(
-                        textAlignVertical: TextAlignVertical.bottom,
-                        style: const TextStyle(fontSize: 15, height: 1),
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                            hintText: '예) 2000.01.01',
-                            border: OutlineInputBorder()
+                      Expanded(child: SizedBox(
+                        width: 150,
+                        child: TextFormField(
+                          textAlignVertical: TextAlignVertical.bottom,
+                          style: const TextStyle(fontSize: 15, height: 1),
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                              hintText: '예) 2000.01.01',
+                              border: OutlineInputBorder()
+                          ),
                         ),
                       )),
                     ],
                   ),
                 )),
                 Container(margin: const EdgeInsets.symmetric(horizontal: 20),child: const Divider()),
-                Expanded(child: Container()),
+                // 중간층
+                Expanded(child: Container(
+                  margin: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Expanded(flex: 2,child: Align(alignment: Alignment.bottomLeft,child: Text('성별',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
+                      Expanded(flex: 2,child: Row(
+                        children: [
+                          const Text('남',style: TextStyle(fontWeight: FontWeight.bold),),
+                          Radio<Gender>(
+                            value: Gender.male,
+                            groupValue: insert.gender,
+                            onChanged: (Gender? value) {
+                              insert.setGender(value);
+                            },
+                          ),
+                          const Text('여',style: TextStyle(fontWeight: FontWeight.bold),),
+                          Radio<Gender>(
+                            value: Gender.female,
+                            groupValue: insert.gender,
+                            onChanged: (Gender? value) {
+                              insert.setGender(value);
+                            },
+                          ),
+                        ],
+                      )),
+                      const Expanded(child: SizedBox()), // 비율 유지용
+                      const Expanded(flex: 2,child: Align(alignment: Alignment.bottomLeft,child: Text('증상',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
+                      const SizedBox(height: 5,),
+                      Expanded(flex:3,child: SizedBox(
+                        width: 250,
+                        child: TextFormField(
+                          textAlignVertical: TextAlignVertical.center,
+                          maxLength: 15,
+                          style: const TextStyle(fontSize: 15, height: 1),
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder()
+                          ),
+                        ),
+                      )),
+                    ],
+                  ),
+                )),
                 Container(margin: const EdgeInsets.symmetric(horizontal: 20),child: const Divider()),
-                Expanded(child: Container()),
+                // 하단
+                Expanded(child: Container(
+                  margin: const EdgeInsets.all(20),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('혈액형',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
+                      Expanded(child: SizedBox(
+                        width: 80,
+                        child: TextFormField(
+                          textAlignVertical: TextAlignVertical.bottom,
+                          style: const TextStyle(fontSize: 15, height: 1),
+                          decoration: const InputDecoration(
+                              hintText: '혈액형',
+                              border: OutlineInputBorder()
+                          ),
+                        ),
+                      )),
+                      const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('연락처',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
+                      Expanded(child: SizedBox(
+                        width: 180,
+                        child: TextFormField(
+                          textAlignVertical: TextAlignVertical.bottom,
+                          style: const TextStyle(fontSize: 15, height: 1),
+                          keyboardType: TextInputType.phone,
+                          decoration: const InputDecoration(
+                              hintText: '010-0000-0000',
+                              border: OutlineInputBorder()
+                          ),
+                        ),
+                      )),
+                      const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('보호자 연락처',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
+                      Expanded(child: SizedBox(
+                        width: 180,
+                        child: TextFormField(
+                          textAlignVertical: TextAlignVertical.bottom,
+                          style: const TextStyle(fontSize: 15, height: 1),
+                          keyboardType: TextInputType.phone,
+                          decoration: const InputDecoration(
+                              hintText: '010-0000-0000',
+                              border: OutlineInputBorder()
+                          ),
+                        ),
+                      )),
+                    ],
+                  ),
+                )),
+                GestureDetector(
+                  onTap: (){
+                    Fluttertoast.showToast(msg: '탭');
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(20),
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: MAIN_COLOR,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    child: const Center(child: Text('확인',style: TextStyle(color: Colors.white,fontSize: 18),)),
+                  ),
+                ),
               ],
             ),
           ),
