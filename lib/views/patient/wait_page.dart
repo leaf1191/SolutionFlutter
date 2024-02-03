@@ -14,7 +14,7 @@ class WaitPage extends StatelessWidget {
         child: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/background_img.png'),
+                  image: AssetImage('assets/background_img.jpg'),
                   fit: BoxFit.fill
               )
           ),

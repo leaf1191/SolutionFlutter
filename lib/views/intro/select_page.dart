@@ -1,3 +1,5 @@
+import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
+import 'package:emergency_mate/http/dio.dart';
 import 'package:flutter/material.dart';
 
 class SelectPage extends StatelessWidget {
@@ -16,8 +18,10 @@ class SelectPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElevatedButton(
-                    onPressed: (){
+                    onPressed: () async {
                       Navigator.pushNamedAndRemoveUntil(context, '/patient/main', ModalRoute.withName('/'));
+                      //dio.options.headers['Authorization'] = await auth.user?.getIdToken(); // 토큰 테스트
+
                     },
                     child: const Text('환자')
                 ),
