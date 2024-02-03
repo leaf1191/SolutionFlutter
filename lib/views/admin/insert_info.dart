@@ -1,4 +1,6 @@
+import 'package:emergency_mate/colors/colors.dart';
 import 'package:emergency_mate/viewmodels/admin/insert_viewmodel.dart';
+import 'package:emergency_mate/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -19,64 +21,52 @@ class InsertInfo extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-            margin: const EdgeInsets.all(10),
-            height: 300,
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: 800,
             child: Column(
               children: [
-                //이름
-                Expanded(child: TextFormField(
-                  controller: context.read<InsertViewModel>().nameCon,
-                  decoration: const InputDecoration(
-                    hintText: '이름'
+                const SizedBox(
+                  height: 60,
+                  child: BasicAppBar(title: '상세 정보',),
+                ),
+                Expanded(child: Container(
+                  margin: const EdgeInsets.all(20),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('이메일',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
+                      const Expanded(child: Align(alignment: Alignment.centerLeft,child: Text('구글의@자체.이메일',style: TextStyle(fontWeight: FontWeight.bold),))),
+                      const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('이름',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
+                      Expanded(child: TextFormField(
+                        textAlignVertical: TextAlignVertical.bottom,
+                        style: const TextStyle(fontSize: 15, height: 1),
+                        decoration: const InputDecoration(
+                            hintText: '이름',
+                            border: OutlineInputBorder()
+                        ),
+                      )),
+                      const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('생년월일',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
+                      Expanded(child: TextFormField(
+                        textAlignVertical: TextAlignVertical.bottom,
+                        style: const TextStyle(fontSize: 15, height: 1),
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                            hintText: '예) 2000.01.01',
+                            border: OutlineInputBorder()
+                        ),
+                      )),
+                    ],
                   ),
                 )),
-                //생년 월일
-                Expanded(child: TextFormField(
-                  controller: context.read<InsertViewModel>().birthCon,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                      hintText: '생년 월일(예시 : 20240101)'
-                  ),
-                )),
-                //증상
-                Expanded(child: TextFormField(
-                  controller: context.read<InsertViewModel>().symptomCon,
-                  decoration: const InputDecoration(
-                      hintText: '증상'
-                  ),
-                )),
-                //연락처
-                Expanded(child: TextFormField(
-                  controller: context.read<InsertViewModel>().phoneCon,
-                  keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                      hintText: '연락처'
-                  ),
-                )),
-                //보호자 연락처
-                Expanded(child: TextFormField(
-                  controller: context.read<InsertViewModel>().parentCon,
-                  keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                      hintText: '보호자 연락처'
-                  ),
-                )),
+                Container(margin: const EdgeInsets.symmetric(horizontal: 20),child: const Divider()),
+                Expanded(child: Container()),
+                Container(margin: const EdgeInsets.symmetric(horizontal: 20),child: const Divider()),
+                Expanded(child: Container()),
               ],
             ),
           ),
-            ElevatedButton(
-                onPressed: () async{
-                  await context.read<InsertViewModel>().insertData(); // 돌아가는 모션
-                  Fluttertoast.showToast(msg: '성공');
-                  // ignore: use_build_context_synchronously
-                  Navigator.pop(context);
-                },
-                child: const Text('확인'),
-            )
-          ],
         ),
       ),
     );
