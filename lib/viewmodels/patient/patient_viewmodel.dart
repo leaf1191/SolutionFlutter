@@ -1,6 +1,7 @@
 import 'package:emergency_mate/models/audio_model.dart';
 import 'package:emergency_mate/models/bluetooth_model.dart';
 import 'package:emergency_mate/models/exit_model.dart';
+import 'package:emergency_mate/models/network_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -8,6 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class PatientViewModel extends ChangeNotifier {
 
   bool _initComplete = false;
+  NetWorkModel? _netWork;
   AudioModel? _audio;
   ExitModel? _exit;
   BluetoothModel? _blue;
@@ -22,17 +24,23 @@ class PatientViewModel extends ChangeNotifier {
   int? get heartBeat => _heartBeat;
 
   initModel() {
+    _netWork = NetWorkModel();
     _audio = AudioModel();
     _exit = ExitModel();
     _blue = BluetoothModel();
     _initComplete = true;
   }
 
+  signOutAndDeleteDB() async => await _netWork!.signOutAndDeleteDB();
+
+  // 오디오 기능
   playAudio() async => await _audio!.playAudio();
   stopAudio() async => await _audio!.stopAudio();
 
+  // 뒤로 두번 누르면 종료
   Future<bool> exitTapTwice() async => await _exit!.exitTapTwice();
 
+  //블루투스
   blueSetting() async => await _blue!.blueSetting();
   blueScan() async {
     if (!_blue!.isSupport) {
@@ -90,8 +98,9 @@ class PatientViewModel extends ChangeNotifier {
     _heartBeat = null;
   }
 
-
+  // 디스포즈
   clearData(){
+    _netWork = null;
     _audio!.clearData();
     _audio = null;
     _exit = null;

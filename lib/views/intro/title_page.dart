@@ -1,5 +1,4 @@
 import 'package:emergency_mate/colors/colors.dart';
-import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
 import 'package:emergency_mate/viewmodels/intro/intro_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -56,7 +55,7 @@ class TitlePage extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () async {
                             try{
-                              await auth.signInWithGoogle();
+                              await context.read<IntroViewModel>().signInWithGoogle();
                               // ignore: use_build_context_synchronously
                               Navigator.pushNamed(context, '/intro/select');
                             } catch(e){

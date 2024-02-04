@@ -20,7 +20,8 @@ import 'package:provider/provider.dart';
 final Map<String, WidgetBuilder> routes = {
   '/intro/title' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => IntroViewModel(),
       child: const TitlePage()),
-  '/intro/select' : (BuildContext context) => const SelectPage(),
+  '/intro/select' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => IntroViewModel(),
+  child: const SelectPage()),
   '/patient/main' : (BuildContext context) => const patient.MainPage(),
   '/patient/heart' : (BuildContext context) => const HeartPage(),
   '/patient/call' : (BuildContext context) => const CallPage(),

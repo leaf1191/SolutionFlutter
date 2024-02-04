@@ -12,14 +12,14 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<PatientViewModel>();
+    final patientViewModel = context.read<PatientViewModel>();
 
     if(!(context.watch<PatientViewModel>().initComplete)){
-      provider.initModel();
+      patientViewModel.initModel();
     }
 
     return WillPopScope(
-      onWillPop: provider.exitTapTwice,
+      onWillPop: patientViewModel.exitTapTwice,
       child: Scaffold(
         body: SafeArea(
           child: Container(
@@ -98,8 +98,8 @@ class MainPage extends StatelessWidget {
                                                   GestureDetector(
                                                     onTap: () async{
                                                       try{
-                                                        await auth.signOut();
-                                                        provider.clearData();
+                                                        await patientViewModel.signOutAndDeleteDB();
+                                                        patientViewModel.clearData();
                                                         // ignore: use_build_context_synchronously
                                                         Navigator.pushNamedAndRemoveUntil(context, '/intro/title', ModalRoute.withName('/'));
                                                       }catch(e){
