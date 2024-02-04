@@ -4,12 +4,14 @@ enum Gender { male, female}
 
 class InsertViewModel extends ChangeNotifier {
 
-  InsertViewModel() {
+  InsertViewModel(this.idx) {
     // 미등록 인원 한명의 정보를 받아와야 함
+    print(idx);
     getUserInfo();
   }
 
   List? test;
+  late final int idx;
   Gender? _gender;
 
   Gender? get gender => _gender;

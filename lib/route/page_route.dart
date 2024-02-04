@@ -30,6 +30,10 @@ final Map<String, WidgetBuilder> routes = {
       child: const admin.MainPage()),
   '/admin/register' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => RegisterViewModel(),
       child: const RegisterPage()),
-  '/admin/insert' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(),
-      child: const InsertInfo()),
 };
+
+/*
+안쓰는 루트
+'/admin/insert' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(),
+      child: const InsertInfo())
+ */

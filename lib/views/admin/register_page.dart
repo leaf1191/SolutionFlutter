@@ -1,6 +1,12 @@
+import 'package:emergency_mate/colors/colors.dart';
 import 'package:emergency_mate/viewmodels/admin/register_viewmodel.dart';
+import 'package:emergency_mate/widgets/app_bar.dart';
+import 'package:emergency_mate/widgets/basic_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../viewmodels/admin/insert_viewmodel.dart';
+import 'insert_info.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -19,28 +25,61 @@ class RegisterPage extends StatelessWidget {
     final test = context.watch<RegisterViewModel>().test!;
     return Scaffold(
       body: SafeArea(
-        child: ListView.separated(
-          itemCount: test.length,
-          itemBuilder: (context, i){
-            return GestureDetector(
-              onTap: (){
-                Navigator
-                    .pushNamed(context, '/admin/insert')
-                    .then((value) => context.read<RegisterViewModel>().testFunction());
-              },
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                height: 50,
-                child: Text(test[i].toString()),
+        child: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/background_img.jpg'),
+                  fit: BoxFit.fill
+              )
+          ),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 60,
+                child: BasicAppBar(
+                  title: '미등록자 목록',
+                ),
               ),
-            );
-          },
-          separatorBuilder: (BuildContext context, int i) {
-            return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: const Divider()
-            );
-          },
+              Expanded(child: ListView.builder(
+                itemCount: 7,
+                itemBuilder: (context, i){
+                  return GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(i),
+                          child: const InsertInfo())));
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      child: BasicButton(
+                        width: double.infinity,
+                        height: 100,
+                        color: MAIN_COLOR,
+                        child: Row(
+                          children: [
+                            Expanded(child: Container(
+                                margin: const EdgeInsets.all(20),
+                                child: Text('${i+1}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),)
+                            )),
+                            Container(
+                                margin: const EdgeInsets.symmetric(vertical: 30),
+                                child: const VerticalDivider(color: MAIN_COLOR,)
+                            ),
+                            const Expanded(flex: 5,child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(child: Align(alignment: Alignment.centerLeft,child: Text('G-mail',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 18),))),
+                                Expanded(flex: 2,child: Text('구글의@등록된.이메일',style: TextStyle(color: Colors.grey,fontSize: 18),)),
+                              ],
+                            )),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),),
+            ],
+          ),
         ),
       ),
     );
