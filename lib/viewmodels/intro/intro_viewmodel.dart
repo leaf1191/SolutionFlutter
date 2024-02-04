@@ -1,5 +1,3 @@
-import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
-import 'package:emergency_mate/http/dio.dart';
 import 'package:emergency_mate/models/exit_model.dart';
 import 'package:emergency_mate/models/network_model.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +12,6 @@ class IntroViewModel extends ChangeNotifier {
 
   signInWithGoogle() async => await _netWorkModel.signInWithGoogle();
 
-  chooseUserRole(String str) async{
-
-  }
-
+  chooseUserRole(Role? role) async => await _netWorkModel.chooseUserRole(role);
 
 }

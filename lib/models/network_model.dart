@@ -1,6 +1,7 @@
 import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
 import 'package:emergency_mate/http/dio.dart';
-import 'package:flutter/material.dart';
+
+enum Role { patient, admin}
 
 class NetWorkModel {
 
@@ -17,6 +18,15 @@ class NetWorkModel {
     await dio.get(deleteUser);
     // 로그아웃
     await auth.signOut();
+  }
+
+  chooseUserRole(Role? role) async{
+    dio.options.headers['Authorization'] = await auth.user?.getIdToken();
+    if(role == Role.patient){
+      await dio.get(toPatient);
+    } else {
+      await dio.get(toAdmin);
+    }
   }
 
 
