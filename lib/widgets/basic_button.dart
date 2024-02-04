@@ -7,13 +7,15 @@ class BasicButton extends StatelessWidget {
       double this.height = 1,
       Color this.color = const Color(0xFF000000),
       Widget? this.child,
-      double this.circular = 20})
+      double this.circular = 20,
+      Color this.backgroundColor = Colors.white})
       : super(key: key);
   final width;
   final height;
   final color;
   final child;
   final circular;
+  final backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class BasicButton extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(circular),
         border: Border.all(color: color,width: 2),
         boxShadow: [

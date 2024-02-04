@@ -2,6 +2,7 @@ import 'package:emergency_mate/viewmodels/admin/admin_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/admin/insert_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/admin/register_viewmodel.dart';
 import 'package:emergency_mate/viewmodels/intro/intro_viewmodel.dart';
+import 'package:emergency_mate/viewmodels/patient/guide/hospital_viewmodel.dart';
 import 'package:emergency_mate/views/admin/insert_info.dart';
 import 'package:emergency_mate/views/admin/register_page.dart';
 import 'package:emergency_mate/views/admin/main_page.dart' as admin;
@@ -24,7 +25,8 @@ final Map<String, WidgetBuilder> routes = {
   '/patient/heart' : (BuildContext context) => const HeartPage(),
   '/patient/call' : (BuildContext context) => const CallPage(),
   '/patient/wait' : (BuildContext context) => const WaitPage(),
-  '/patient/guide/hospital' : (BuildContext context) => const GuideHospital(),
+  '/patient/guide/hospital' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => HospitalViewModel(),
+  child: const GuideHospital()),
   '/patient/guide/procedure' : (BuildContext context) => const GuideProcedure(),
   '/admin/main' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => AdminViewModel(),
       child: const admin.MainPage()),
