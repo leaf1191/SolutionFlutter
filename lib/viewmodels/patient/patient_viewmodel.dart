@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
 import 'package:emergency_mate/models/audio_model.dart';
 import 'package:emergency_mate/models/bluetooth_model.dart';
 import 'package:emergency_mate/models/exit_model.dart';
@@ -8,16 +12,22 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class PatientViewModel extends ChangeNotifier {
 
+  // 모델
   bool _initComplete = false;
   NetWorkModel? _netWork;
   AudioModel? _audio;
   ExitModel? _exit;
   BluetoothModel? _blue;
 
+  // 파이어스토어 구독
+  StreamSubscription? _fireSubscription;
+
+  // 블루투스 데이터
   final List<ScanResult> _blueDevice = [];
   int _blueDeviceLength = 0;
   int? _heartBeat;
 
+  // 게터
   bool get initComplete => _initComplete;
   List<ScanResult> get blueDevice => _blueDevice;
   int get blueDeviceLength => _blueDeviceLength;
@@ -28,10 +38,26 @@ class PatientViewModel extends ChangeNotifier {
     _audio = AudioModel();
     _exit = ExitModel();
     _blue = BluetoothModel();
+    _setFireStoreSubscription();
     _initComplete = true;
   }
 
+  // api 기능
   signOutAndDeleteDB() async => await _netWork!.signOutAndDeleteDB();
+
+  // 파이어스토어 구독 관리
+  _setFireStoreSubscription(){
+    String userUid = auth.user!.uid;
+    var fireStream = FirebaseFirestore.instance.collection('no_wait_patient/$userUid/test').snapshots();
+    _fireSubscription = fireStream.listen((event) async {
+      print(event.docs);
+    });
+  }
+
+  _removeFireStoreSubscription(){
+    _fireSubscription?.cancel();
+    _fireSubscription = null;
+  }
 
   // 오디오 기능
   playAudio() async => await _audio!.playAudio();
@@ -101,6 +127,7 @@ class PatientViewModel extends ChangeNotifier {
   // 디스포즈
   clearData(){
     _netWork = null;
+    _removeFireStoreSubscription();
     _audio!.clearData();
     _audio = null;
     _exit = null;
