@@ -53,7 +53,7 @@ class SelectPage extends StatelessWidget {
                           child: Column(
                             children: [
                               Expanded(flex: 3,child: Container(
-                                margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                                margin: const EdgeInsets.fromLTRB(35, 35, 35, 0),
                                 child: Image.asset('assets/select/patient.png'),
                               )),
                               const Expanded(flex: 2,child: Text('환자',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: MAIN_COLOR),))

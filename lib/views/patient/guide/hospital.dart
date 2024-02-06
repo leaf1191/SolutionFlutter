@@ -36,7 +36,7 @@ class GuideHospital extends StatelessWidget {
                   ),
                   child: hospitalViewModel.currentIdx == null?
                   const Center(child: Text('층을 선택해주세요.',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)) :
-                  Text('${hospitalViewModel.floors[hospitalViewModel.currentIdx!]}'),
+                  Image.asset('assets/guide/map.jpg'),
                 )),
               ],
             )),
