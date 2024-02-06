@@ -69,7 +69,15 @@ class TitlePage extends StatelessWidget {
                               border: Border.all(color: MAIN_COLOR),
                               borderRadius: BorderRadius.circular(50)
                             ),
-                            child: const Center(child: Text('Google Login',style: TextStyle(fontSize: 25,color: MAIN_COLOR),)),
+                            child: Row(
+                              children: [
+                                Expanded(child: Container(
+                                    margin: const EdgeInsets.all(10),
+                                    child: Image.asset('assets/google.png')
+                                )),
+                                const Expanded(flex: 3,child: Text('Google Login',style: TextStyle(fontSize: 25,color: MAIN_COLOR),)),
+                              ],
+                            ),
                           ),
                         ),
                       )),

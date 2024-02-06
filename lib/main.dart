@@ -20,8 +20,10 @@ Future<String> getUserRole() async {
     return '/intro/select';
   } else if(roleData == 'NO_WAIT_PATIENT' || roleData == 'WAIT_PATIENT'){
     return '/patient/main';
-  } else {
+  } else if(roleData == 'ADMIN'){
     return '/admin/main';
+  } else {
+    return '/intro/title';
   }
 }
 
