@@ -11,7 +11,8 @@ import 'package:emergency_mate/views/intro/title_page.dart';
 import 'package:emergency_mate/views/patient/call_page.dart';
 import 'package:emergency_mate/views/patient/guide/hospital.dart';
 import 'package:emergency_mate/views/patient/guide/procedure.dart';
-import 'package:emergency_mate/views/patient/heart_page.dart';
+import 'package:emergency_mate/views/patient/heart/heart_page.dart';
+import 'package:emergency_mate/views/patient/heart/search_device.dart';
 import 'package:emergency_mate/views/patient/my_turn_page.dart';
 import 'package:emergency_mate/views/patient/wait_page.dart';
 import 'package:emergency_mate/views/patient/main_page.dart' as patient;
@@ -25,6 +26,7 @@ final Map<String, WidgetBuilder> routes = {
   child: const SelectPage()),
   '/patient/main' : (BuildContext context) => const patient.MainPage(),
   '/patient/heart' : (BuildContext context) => const HeartPage(),
+  '/patient/device' : (BuildContext context) => const SearchDevice(),
   '/patient/call' : (BuildContext context) => const CallPage(),
   '/patient/wait' : (BuildContext context) => const WaitPage(),
   '/patient/guide/hospital' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => HospitalViewModel(),
