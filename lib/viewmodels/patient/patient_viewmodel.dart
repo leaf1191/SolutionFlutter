@@ -125,13 +125,13 @@ class PatientViewModel extends ChangeNotifier {
   }
 
   // 디스포즈
-  clearData(){
+  clearData() async {
     _netWork = null;
     _removeFireStoreSubscription();
-    _audio!.clearData();
+    _audio?.clearData();
     _audio = null;
     _exit = null;
-    _blue!.dispose();
+    await _blue?.dispose();
     _blueDataClear();
     _blue = null;
     _initComplete = false;

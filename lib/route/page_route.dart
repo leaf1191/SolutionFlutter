@@ -12,6 +12,7 @@ import 'package:emergency_mate/views/patient/call_page.dart';
 import 'package:emergency_mate/views/patient/guide/hospital.dart';
 import 'package:emergency_mate/views/patient/guide/procedure.dart';
 import 'package:emergency_mate/views/patient/heart_page.dart';
+import 'package:emergency_mate/views/patient/my_turn_page.dart';
 import 'package:emergency_mate/views/patient/wait_page.dart';
 import 'package:emergency_mate/views/patient/main_page.dart' as patient;
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ final Map<String, WidgetBuilder> routes = {
   '/patient/guide/hospital' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => HospitalViewModel(),
   child: const GuideHospital()),
   '/patient/guide/procedure' : (BuildContext context) => const GuideProcedure(),
+  '/patient/myTurn' : (BuildContext context) => const MyTurn(),
   '/admin/main' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => AdminViewModel(),
       child: const admin.MainPage()),
   '/admin/register' : (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => RegisterViewModel(),

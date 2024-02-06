@@ -99,7 +99,7 @@ class MainPage extends StatelessWidget {
                                                     onTap: () async{
                                                       try{
                                                         await patientViewModel.signOutAndDeleteDB();
-                                                        patientViewModel.clearData();
+                                                        await patientViewModel.clearData();
                                                         // ignore: use_build_context_synchronously
                                                         Navigator.pushNamedAndRemoveUntil(context, '/intro/title', ModalRoute.withName('/'));
                                                       }catch(e){
