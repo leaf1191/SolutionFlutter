@@ -26,12 +26,14 @@ class PatientViewModel extends ChangeNotifier {
   final List<ScanResult> _blueDevice = [];
   int _blueDeviceLength = 0;
   int? _heartBeat;
+  bool _isWarning = false;
 
   // 게터
   bool get initComplete => _initComplete;
   List<ScanResult> get blueDevice => _blueDevice;
   int get blueDeviceLength => _blueDeviceLength;
   int? get heartBeat => _heartBeat;
+  bool get isWarning => _isWarning;
 
   initModel() {
     _netWork = NetWorkModel();
@@ -122,6 +124,7 @@ class PatientViewModel extends ChangeNotifier {
     _blueDevice.clear();
     _blueDeviceLength = 0;
     _heartBeat = null;
+    _isWarning = false;
   }
 
   // 디스포즈
