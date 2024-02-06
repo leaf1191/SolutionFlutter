@@ -18,6 +18,7 @@ class GuideProcedure extends StatelessWidget {
             Expanded(
                 flex: 2,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       margin: const EdgeInsets.all(20),
@@ -30,12 +31,16 @@ class GuideProcedure extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Expanded(child: SizedBox()),
+                    Expanded(child: Container(
+                      margin: const EdgeInsets.all(20),
+                      child: Image.asset('assets/guide/procedure.jpg'),
+                    )),
                   ],
                 ),
             ),
             Expanded(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     margin: const EdgeInsets.all(20),
@@ -48,7 +53,10 @@ class GuideProcedure extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Expanded(child: SizedBox()),
+                  Expanded(child: Container(
+                    margin: const EdgeInsets.all(20),
+                    child: Image.asset('assets/guide/symptoms.jpg'),
+                  )),
                 ],
               ),
             ),
