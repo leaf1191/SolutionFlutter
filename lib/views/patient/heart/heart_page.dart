@@ -17,9 +17,9 @@ class HeartPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/background_img.jpg'),
+                  image: patientViewModel.isWarning? const AssetImage('assets/heart/red_background_img.jpg') : const AssetImage('assets/background_img.jpg'),
                   fit: BoxFit.fill
               )
           ),
@@ -48,7 +48,7 @@ class HeartPage extends StatelessWidget {
                     alignment: Alignment.topCenter,
                     child: SizedBox(
                         height: 100,
-                        child: patientViewModel.isWarning? Image.asset('assets/heart/bluetooth.png') : Image.asset('assets/heart/blue_heart.png')
+                        child: patientViewModel.isWarning? Image.asset('assets/heart/red_heart.png') : Image.asset('assets/heart/blue_heart.png')
                     ),
                   ),
                 ],
@@ -69,7 +69,7 @@ class HeartPage extends StatelessWidget {
                       children: [
                         Expanded(flex: 2,child: Container(
                           margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
-                          child: Image.asset('assets/heart/bluetooth.png'),
+                          child: patientViewModel.isWarning? Image.asset('assets/heart/redtooth.png') : Image.asset('assets/heart/bluetooth.png'),
                         )),
                         Expanded(child: Text('블루투스 연결',style: TextStyle(color: color,fontWeight: FontWeight.bold),))
                       ],
