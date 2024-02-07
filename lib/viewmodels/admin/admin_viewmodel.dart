@@ -7,4 +7,6 @@ class AdminViewModel extends ChangeNotifier {
 
   Future<bool> exitTapTwice() async => _exitModel.exitTapTwice();
 
+  List test = [{'call' : false},{'call' : true},{'call' : false},{'call' : false},{'call' : false},{'call' : false},{'call' : false}];
+
 }
