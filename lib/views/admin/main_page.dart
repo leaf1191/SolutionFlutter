@@ -4,6 +4,7 @@ import 'package:emergency_mate/viewmodels/admin/check_viewmodel.dart';
 import 'package:emergency_mate/views/admin/check_info.dart';
 import 'package:emergency_mate/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/basic_button.dart';
@@ -53,19 +54,30 @@ class MainPage extends StatelessWidget {
                       SliverToBoxAdapter(
                         child: Align(
                           alignment: Alignment.centerRight,
-                          child: Container(
-                              width: 100,
-                              height: 30,
-                              margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: MAIN_COLOR, width: 2),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Center(
-                                  child: Text(
-                                    '로그아웃',
-                                    style: TextStyle(
-                                        color: MAIN_COLOR, fontWeight: FontWeight.bold),
-                                  ))),
+                          child: GestureDetector(
+                            onTap: () async{
+                              try{
+                                await adminViewModel.signOutAndDeleteDB();
+                                // ignore: use_build_context_synchronously
+                                Navigator.pushNamedAndRemoveUntil(context, '/intro/title', ModalRoute.withName('/'));
+                              } catch(e){
+                                Fluttertoast.showToast(msg: '로그아웃 실패');
+                              }
+                            },
+                            child: Container(
+                                width: 100,
+                                height: 30,
+                                margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: MAIN_COLOR, width: 2),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: const Center(
+                                    child: Text(
+                                      '로그아웃',
+                                      style: TextStyle(
+                                          color: MAIN_COLOR, fontWeight: FontWeight.bold),
+                                    ))),
+                          ),
                         ),
                       ),
                       SliverGrid.builder(

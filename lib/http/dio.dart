@@ -5,8 +5,10 @@ const addUser = '/list/add_user';
 const deleteUser = '/list/delete';
 const toPatient = '/list/add_no_wait_patient';
 const realPatient = '/list/add_wait_patient';
-const toAdmin = '////'; // /list/add_admin
+const toAdmin = '/list/add_admin';
 const getUser = '/list/mine';
+
+const getNoWait = '/list/get_no_wait_patients';
 
 final dio = Dio(BaseOptions(
   baseUrl: baseUrl

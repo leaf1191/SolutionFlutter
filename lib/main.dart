@@ -15,7 +15,7 @@ import 'firebase_options.dart';
 Future<String> getUserRole() async {
   dio.options.headers['Authorization'] = await auth.user?.getIdToken();
   var response = await dio.get(getUser);
-  final roleData = response.data[2];
+  final roleData = response.data['role'];
   if(roleData == 'USER') {
     return '/intro/select';
   } else if(roleData == 'NO_WAIT_PATIENT' || roleData == 'WAIT_PATIENT'){

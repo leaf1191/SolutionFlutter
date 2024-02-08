@@ -13,8 +13,10 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final registerViewModel = context.read<RegisterViewModel>();
+    final registerWatch = context.watch<RegisterViewModel>();
 
-    if(context.watch<RegisterViewModel>().test == null){
+    if(registerWatch.noWaitList == null){
       return const Scaffold(
         body: SafeArea(
             child: Center(child: CircularProgressIndicator())
@@ -22,7 +24,7 @@ class RegisterPage extends StatelessWidget {
       );
     }
 
-    final test = context.watch<RegisterViewModel>().test!;
+    final test = context.watch<RegisterViewModel>().noWaitList!;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -41,12 +43,12 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
               Expanded(child: ListView.builder(
-                itemCount: 7,
+                itemCount: registerWatch.noWaitList?.length ?? 0,
                 itemBuilder: (context, i){
                   return GestureDetector(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(i),
-                          child: const InsertInfo())));
+                          child: const InsertInfo()))).then((_) => registerViewModel.getAllUserInfo());
                     },
                     child: Container(
                       margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -58,17 +60,17 @@ class RegisterPage extends StatelessWidget {
                           children: [
                             Expanded(child: Container(
                                 margin: const EdgeInsets.all(20),
-                                child: Text('${i+1}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),)
+                                child: Text('${i+1}',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 30),)
                             )),
                             Container(
                                 margin: const EdgeInsets.symmetric(vertical: 30),
                                 child: const VerticalDivider(color: MAIN_COLOR,)
                             ),
-                            const Expanded(flex: 5,child: Column(
+                            Expanded(flex: 5,child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(child: Align(alignment: Alignment.centerLeft,child: Text('G-mail',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 18),))),
-                                Expanded(flex: 2,child: Text('구글의@등록된.이메일',style: TextStyle(color: Colors.grey,fontSize: 18),)),
+                                const Expanded(child: Align(alignment: Alignment.centerLeft,child: Text('G-mail',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 18),))),
+                                Expanded(flex: 2,child: Text('${registerWatch.noWaitList?[i]['email']}',style: TextStyle(color: Colors.grey,fontSize: 18),)),
                               ],
                             )),
                           ],

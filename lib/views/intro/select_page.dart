@@ -66,7 +66,7 @@ class SelectPage extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () async {
                       try{
-                        // await introViewModel.chooseUserRole(Role.admin);
+                        await introViewModel.chooseUserRole(Role.admin);
                         // ignore: use_build_context_synchronously
                         Navigator.pushNamedAndRemoveUntil(context, '/admin/main', ModalRoute.withName('/'));
                       } catch(e){

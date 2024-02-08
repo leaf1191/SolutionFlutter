@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
 import 'package:emergency_mate/http/dio.dart';
 
@@ -27,6 +28,11 @@ class NetWorkModel {
     } else {
       await dio.get(toAdmin);
     }
+  }
+
+  Future<Response> getNoWaitList() async{
+    dio.options.headers['Authorization'] = await auth.user?.getIdToken();
+    return await dio.get(getNoWait);
   }
 
 
