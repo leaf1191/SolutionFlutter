@@ -9,6 +9,7 @@ const toAdmin = '/list/add_admin';
 const getUser = '/list/mine';
 
 const getNoWait = '/list/get_no_wait_patients';
+const postInfo = '/list/add_info';
 
 final dio = Dio(BaseOptions(
   baseUrl: baseUrl

@@ -11,10 +11,10 @@ class InsertInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final insert = context.read<InsertViewModel>();
+    final insertViewModel = context.read<InsertViewModel>();
     final watchInsert = context.watch<InsertViewModel>();
 
-    if(watchInsert.test == null){
+    if(watchInsert.userInfo == null){
       return const Scaffold(
         body: SafeArea(
             child: Center(child: CircularProgressIndicator())
@@ -41,11 +41,12 @@ class InsertInfo extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('이메일',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
-                      const Expanded(child: Align(alignment: Alignment.centerLeft,child: Text('구글의@등록된.이메일',style: TextStyle(fontWeight: FontWeight.bold),))),
+                      Expanded(child: Align(alignment: Alignment.centerLeft,child: Text('${watchInsert.userInfo?['email']}',style: const TextStyle(fontWeight: FontWeight.bold),))),
                       const Expanded(child: Align(alignment: Alignment.bottomLeft,child: Text('이름',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),))),
                       Expanded(child: SizedBox(
                         width: 100,
                         child: TextFormField(
+                          controller: insertViewModel.nameCon,
                           textAlignVertical: TextAlignVertical.bottom,
                           style: const TextStyle(fontSize: 15, height: 1),
                           decoration: const InputDecoration(
@@ -58,6 +59,7 @@ class InsertInfo extends StatelessWidget {
                       Expanded(child: SizedBox(
                         width: 150,
                         child: TextFormField(
+                          controller: insertViewModel.birthCon,
                           textAlignVertical: TextAlignVertical.bottom,
                           style: const TextStyle(fontSize: 15, height: 1),
                           keyboardType: TextInputType.number,
@@ -83,17 +85,17 @@ class InsertInfo extends StatelessWidget {
                           const Text('남',style: TextStyle(fontWeight: FontWeight.bold),),
                           Radio<Gender>(
                             value: Gender.male,
-                            groupValue: insert.gender,
+                            groupValue: insertViewModel.gender,
                             onChanged: (Gender? value) {
-                              insert.setGender(value);
+                              insertViewModel.setGender(value);
                             },
                           ),
                           const Text('여',style: TextStyle(fontWeight: FontWeight.bold),),
                           Radio<Gender>(
                             value: Gender.female,
-                            groupValue: insert.gender,
+                            groupValue: insertViewModel.gender,
                             onChanged: (Gender? value) {
-                              insert.setGender(value);
+                              insertViewModel.setGender(value);
                             },
                           ),
                         ],
@@ -104,6 +106,7 @@ class InsertInfo extends StatelessWidget {
                       Expanded(flex:3,child: SizedBox(
                         width: 250,
                         child: TextFormField(
+                          controller: insertViewModel.symptomCon,
                           textAlignVertical: TextAlignVertical.center,
                           maxLength: 15,
                           style: const TextStyle(fontSize: 15, height: 1),
@@ -127,6 +130,7 @@ class InsertInfo extends StatelessWidget {
                       Expanded(child: SizedBox(
                         width: 80,
                         child: TextFormField(
+                          controller: insertViewModel.bloodCon,
                           textAlignVertical: TextAlignVertical.bottom,
                           style: const TextStyle(fontSize: 15, height: 1),
                           decoration: const InputDecoration(
@@ -139,6 +143,7 @@ class InsertInfo extends StatelessWidget {
                       Expanded(child: SizedBox(
                         width: 180,
                         child: TextFormField(
+                          controller: insertViewModel.phoneCon,
                           textAlignVertical: TextAlignVertical.bottom,
                           style: const TextStyle(fontSize: 15, height: 1),
                           keyboardType: TextInputType.phone,
@@ -152,6 +157,7 @@ class InsertInfo extends StatelessWidget {
                       Expanded(child: SizedBox(
                         width: 180,
                         child: TextFormField(
+                          controller: insertViewModel.parentCon,
                           textAlignVertical: TextAlignVertical.bottom,
                           style: const TextStyle(fontSize: 15, height: 1),
                           keyboardType: TextInputType.phone,
@@ -165,8 +171,16 @@ class InsertInfo extends StatelessWidget {
                   ),
                 )),
                 GestureDetector(
-                  onTap: (){
-                    Fluttertoast.showToast(msg: '탭');
+                  onTap: () async{
+                    try{
+                      await insertViewModel.insertData();
+                      Fluttertoast.showToast(msg: '등록 성공하였습니다.');
+                      // ignore: use_build_context_synchronously
+                      Navigator.pop(context);
+                    }catch(e){
+                      print(e);
+                      Fluttertoast.showToast(msg: '전송에 실패하였습니다.');
+                    }
                   },
                   child: Container(
                     margin: const EdgeInsets.all(20),
