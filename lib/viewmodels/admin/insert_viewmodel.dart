@@ -28,6 +28,9 @@ class InsertViewModel extends ChangeNotifier {
   final phoneCon = TextEditingController();
   final parentCon = TextEditingController();
 
+  // 글로벌 키
+  final GlobalKey<FormState> key = GlobalKey<FormState>();
+
   getUserInfo() async {
     try{
       var response = await _newWork.getUserInfo(idx);
@@ -39,6 +42,10 @@ class InsertViewModel extends ChangeNotifier {
   }
 
   insertData() async{
+    if(!_checkValidation()){
+      Fluttertoast.showToast(msg: '필드를 입력해 주세요.');
+      return Future.error('유효하지 않음');
+    }
     String sex;
     if(_gender == Gender.male){
       sex = '남';
@@ -67,5 +74,12 @@ class InsertViewModel extends ChangeNotifier {
     _gender = value;
     notifyListeners();
   }
+
+  String? validate(String? value){
+    if(value == '') return '입력해 주세요';
+    return null;
+  }
+
+  bool _checkValidation() => key.currentState?.validate() ?? false;
 
 }
