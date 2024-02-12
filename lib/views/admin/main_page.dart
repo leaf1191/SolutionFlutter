@@ -195,22 +195,27 @@ class MainPage extends StatelessWidget {
                                               Expanded(child: Text('${userData['name']}',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
                                               const Expanded(child: Text('생년월일',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
                                               Expanded(child: Text('${userData['date']}',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
-                                              Expanded(flex: 3,child: Container(
-                                                width: double.infinity,
-                                                height: double.infinity,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius: BorderRadius.circular(20),
-                                                    border: Border.all(color: WARNING_COLOR,width: 2),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                          offset: const Offset(0, 3),
-                                                          color: Colors.black.withOpacity(0.5),
-                                                          blurRadius: 3
-                                                      )
-                                                    ]
+                                              Expanded(flex: 3,child: GestureDetector(
+                                                onTap: () async{
+                                                  await adminViewModel.checkCallByPatient(userData['email']);
+                                                },
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  height: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius: BorderRadius.circular(20),
+                                                      border: Border.all(color: WARNING_COLOR,width: 2),
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                            offset: const Offset(0, 3),
+                                                            color: Colors.black.withOpacity(0.5),
+                                                            blurRadius: 3
+                                                        )
+                                                      ]
+                                                  ),
+                                                  child: const Center(child: Text('호출 확인',style: TextStyle(color: WARNING_COLOR,fontSize: 15),)),
                                                 ),
-                                                child: const Center(child: Text('호출 확인',style: TextStyle(color: WARNING_COLOR,fontSize: 15),)),
                                               )),
                                             ],
                                           ),

@@ -34,11 +34,19 @@ class AdminViewModel extends ChangeNotifier {
     }
   }
 
-  deleteUser(String gmail) async {
+  deleteUser(String? gmail) async {
     try{
       await _netWork.deleteUserInfo(gmail);
     } catch(e){
       Fluttertoast.showToast(msg: '삭제하는데 실패하였습니다.');
+    }
+  }
+
+  checkCallByPatient(String? gmail) async{
+    try{
+      await _netWork.callByPatient(gmail);
+    } catch(e){
+      Fluttertoast.showToast(msg: '확인에 실패하였습니다.');
     }
   }
 

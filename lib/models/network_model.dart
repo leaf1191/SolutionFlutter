@@ -47,7 +47,7 @@ class NetWorkModel {
 
   Future<Response> callByPatient(String? gmail) async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
-    return await dio.get('$callPatient/$gmail');
+    return await dio.get('$callOffPatient/$gmail');
   }
 
   // 미등록 유저
@@ -81,6 +81,11 @@ class NetWorkModel {
   deleteUserInfo(String? gmail) async {
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
     await dio.get('$deleteUser/$gmail');
+  }
+
+  checkCallByPatient(String? gmail) async{
+    dio.options.headers['Authorization'] = await auth.user?.getIdToken();
+    await dio.get('$callOffPatient/$gmail');
   }
 
 
