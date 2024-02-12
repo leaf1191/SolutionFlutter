@@ -11,6 +11,8 @@ const getUser = '/list/mine';
 const getNoWait = '/list/get_no_wait_patients';
 const postInfo = '/list/add_info';
 
+const getWait = '/list/wait';
+
 final dio = Dio(BaseOptions(
   baseUrl: baseUrl
 ));

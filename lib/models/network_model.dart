@@ -48,5 +48,10 @@ class NetWorkModel {
     await dio.post('$postInfo/$gmail',data: jsonData);
   }
 
+  Future<Response> getWaitUserInfo(String? gmail) async{
+    dio.options.headers['Authorization'] = await auth.user?.getIdToken();
+    return await dio.get('$getWait/$gmail');
+  }
+
 
 }

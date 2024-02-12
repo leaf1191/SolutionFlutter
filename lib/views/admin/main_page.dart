@@ -88,7 +88,7 @@ class MainPage extends StatelessWidget {
                             if(!userData['callPatient']){
                               return GestureDetector(
                                 onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChangeNotifierProvider(create: (context) => CheckInfoViewModel(i),
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChangeNotifierProvider(create: (context) => CheckInfoViewModel(userData['email'], i),
                                     child: const CheckInfo(),
                                   )));
                                 },
@@ -163,7 +163,7 @@ class MainPage extends StatelessWidget {
                             } else {
                               return GestureDetector(
                                 onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChangeNotifierProvider(create: (context) => CheckInfoViewModel(i),
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChangeNotifierProvider(create: (context) => CheckInfoViewModel(userData['email'], i),
                                     child: const CheckInfo(),
                                   )));
                                 },
