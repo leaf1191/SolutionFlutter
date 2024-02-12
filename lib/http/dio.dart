@@ -13,6 +13,9 @@ const postInfo = '/list/add_info';
 
 const getWait = '/list/wait';
 
+const callPatient = '/call';
+const callAdmin = '/call/admin';
+
 final dio = Dio(BaseOptions(
   baseUrl: baseUrl
 ));

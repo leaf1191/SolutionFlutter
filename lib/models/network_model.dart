@@ -8,6 +8,7 @@ enum Role { patient, admin}
 
 class NetWorkModel {
 
+  // 로그인 기능
   signInWithGoogle() async {
     await auth.signInWithGoogle();
     // 로그인이 되면 디비에 유저 생성
@@ -23,6 +24,7 @@ class NetWorkModel {
     await auth.signOut();
   }
 
+  // 환자 관리자 선택
   chooseUserRole(Role? role) async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
     if(role == Role.patient){
@@ -32,6 +34,7 @@ class NetWorkModel {
     }
   }
 
+  // 미등록 유저
   Future<Response> getNoWaitList() async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
     return await dio.get(getNoWait);
@@ -48,9 +51,20 @@ class NetWorkModel {
     await dio.post('$postInfo/$gmail',data: jsonData);
   }
 
+  // 등록 유저
   Future<Response> getWaitUserInfo(String? gmail) async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
     return await dio.get('$getWait/$gmail');
+  }
+
+  callByAdmin(String? gmail) async{
+    dio.options.headers['Authorization'] = await auth.user?.getIdToken();
+    await dio.get('$callAdmin/$gmail');
+  }
+
+  deleteUserInfo(String? gmail) async {
+    dio.options.headers['Authorization'] = await auth.user?.getIdToken();
+    await dio.get('$deleteUser/$gmail');
   }
 
 

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emergency_mate/models/exit_model.dart';
 import 'package:emergency_mate/models/network_model.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AdminViewModel extends ChangeNotifier {
 
@@ -24,6 +25,22 @@ class AdminViewModel extends ChangeNotifier {
 
   // 네트워크 기능
   signOutAndDeleteDB() async => await _netWork.signOutAndDeleteDB();
+
+  callByAdmin(String? gmail) async{
+    try{
+      await _netWork.callByAdmin(gmail);
+    } catch(e){
+      Fluttertoast.showToast(msg: '호출하는데 실패하였습니다.');
+    }
+  }
+
+  deleteUser(String gmail) async {
+    try{
+      await _netWork.deleteUserInfo(gmail);
+    } catch(e){
+      Fluttertoast.showToast(msg: '삭제하는데 실패하였습니다.');
+    }
+  }
 
   // 파이어스토어 구독 관리
   _setFireStoreSubscription(){

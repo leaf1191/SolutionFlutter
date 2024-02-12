@@ -110,45 +110,55 @@ class MainPage extends StatelessWidget {
                                           Expanded(flex: 3,child: Row(
                                             children: [
                                               Expanded(
-                                                child: BasicButton(
-                                                  width: double.infinity,
-                                                  height: double.infinity,
-                                                  color: MAIN_COLOR,
-                                                  child: Column(
-                                                    children: [
-                                                      Expanded(child: Align(
-                                                        alignment: Alignment.bottomCenter,
-                                                        child: Container(
-                                                            margin: const EdgeInsets.fromLTRB(5, 5, 5, 0),
-                                                            child: Image.asset('assets/admin/call.png')
-                                                        ),
-                                                      ),),
-                                                      const Expanded(child: Align(
-                                                          alignment: Alignment.topCenter,
-                                                          child: Text('호출',style: TextStyle(color: MAIN_COLOR),))),
-                                                    ],
+                                                child: GestureDetector(
+                                                  onTap: () async{
+                                                    await adminViewModel.callByAdmin(userData['email']);
+                                                  },
+                                                  child: BasicButton(
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    color: MAIN_COLOR,
+                                                    child: Column(
+                                                      children: [
+                                                        Expanded(child: Align(
+                                                          alignment: Alignment.bottomCenter,
+                                                          child: Container(
+                                                              margin: const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                                                              child: Image.asset('assets/admin/call.png')
+                                                          ),
+                                                        ),),
+                                                        const Expanded(child: Align(
+                                                            alignment: Alignment.topCenter,
+                                                            child: Text('호출',style: TextStyle(color: MAIN_COLOR),))),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                               const SizedBox(width: 5,),
                                               Expanded(
-                                                child: BasicButton(
-                                                  width: double.infinity,
-                                                  height: double.infinity,
-                                                  color: MAIN_COLOR,
-                                                  child: Column(
-                                                    children: [
-                                                      Expanded(child: Align(
-                                                        alignment: Alignment.bottomCenter,
-                                                        child: Container(
-                                                            margin: const EdgeInsets.fromLTRB(5, 5, 5, 0),
-                                                            child: Image.asset('assets/admin/trash.png')
-                                                        ),
-                                                      ),),
-                                                      const Expanded(child: Align(
-                                                          alignment: Alignment.topCenter,
-                                                          child: Text('삭제',style: TextStyle(color: MAIN_COLOR),))),
-                                                    ],
+                                                child: GestureDetector(
+                                                  onTap: () async{
+                                                    await adminViewModel.deleteUser(userData['email']);
+                                                  },
+                                                  child: BasicButton(
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    color: MAIN_COLOR,
+                                                    child: Column(
+                                                      children: [
+                                                        Expanded(child: Align(
+                                                          alignment: Alignment.bottomCenter,
+                                                          child: Container(
+                                                              margin: const EdgeInsets.fromLTRB(5, 5, 5, 0),
+                                                              child: Image.asset('assets/admin/trash.png')
+                                                          ),
+                                                        ),),
+                                                        const Expanded(child: Align(
+                                                            alignment: Alignment.topCenter,
+                                                            child: Text('삭제',style: TextStyle(color: MAIN_COLOR),))),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
