@@ -82,9 +82,10 @@ class MainPage extends StatelessWidget {
                       ),
                       SliverGrid.builder(
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisExtent: 180,crossAxisSpacing: 10),
-                          itemCount: adminWatch.test.length,
+                          itemCount: adminWatch.waitUsers.length,
                           itemBuilder: (context, i){
-                            if(!adminWatch.test[i]['call']){
+                            var userData = adminWatch.waitUsers[i].data();
+                            if(!userData['callPatient']){
                               return GestureDetector(
                                 onTap: (){
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => ChangeNotifierProvider(create: (context) => CheckInfoViewModel(i),
@@ -103,9 +104,9 @@ class MainPage extends StatelessWidget {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Expanded(child: Text('${i+1}.',style: const TextStyle(fontWeight: FontWeight.bold),)),
-                                          Expanded(child: Text('김정은',style: const TextStyle(fontWeight: FontWeight.bold),)),
-                                          Expanded(child: Text('생년월일',style: const TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)),
-                                          Expanded(child: Text('24.02.03',style: const TextStyle(fontWeight: FontWeight.bold),)),
+                                          Expanded(child: Text('${userData['name']}',style: const TextStyle(fontWeight: FontWeight.bold),)),
+                                          const Expanded(child: Text('생년월일',style: TextStyle(fontWeight: FontWeight.bold,color: MAIN_COLOR),)),
+                                          Expanded(child: Text('${userData['date']}',style: const TextStyle(fontWeight: FontWeight.bold),)),
                                           Expanded(flex: 3,child: Row(
                                             children: [
                                               Expanded(
@@ -181,9 +182,9 @@ class MainPage extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Expanded(child: Text('${i+1}.',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
-                                              Expanded(child: Text('호출된 김정은',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
-                                              Expanded(child: Text('생년월일',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
-                                              Expanded(child: Text('24.02.03',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
+                                              Expanded(child: Text('${userData['name']}',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
+                                              const Expanded(child: Text('생년월일',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
+                                              Expanded(child: Text('${userData['date']}',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)),
                                               Expanded(flex: 3,child: Container(
                                                 width: double.infinity,
                                                 height: double.infinity,

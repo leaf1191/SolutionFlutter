@@ -18,16 +18,19 @@ class AdminViewModel extends ChangeNotifier {
   // 파이어스토어 구독
   StreamSubscription? _fireSubscription;
 
-  List test = [{'call' : false},{'call' : true},{'call' : false},{'call' : false},{'call' : false},{'call' : false},{'call' : true}];
+  List _waitUsers = [];
+
+  List get waitUsers => _waitUsers;
 
   // 네트워크 기능
   signOutAndDeleteDB() async => await _netWork.signOutAndDeleteDB();
 
   // 파이어스토어 구독 관리
   _setFireStoreSubscription(){
-    var fireStream = FirebaseFirestore.instance.collection('wait_patient').snapshots();
+    var fireStream = FirebaseFirestore.instance.collection('wait_patient').orderBy('timestamp').snapshots();
     _fireSubscription = fireStream.listen((event) async {
-      print(event.docs);
+      _waitUsers = event.docs;
+      notifyListeners();
     });
   }
 
