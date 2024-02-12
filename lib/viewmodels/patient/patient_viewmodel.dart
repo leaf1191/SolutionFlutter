@@ -47,6 +47,17 @@ class PatientViewModel extends ChangeNotifier {
   // api 기능
   signOutAndDeleteDB() async => await _netWork!.signOutAndDeleteDB();
 
+  callByPatient() async{
+    try{
+      var response = await _netWork!.callByPatient(auth.user?.email);
+      if(!response.data){
+        Fluttertoast.showToast(msg: '등록이 되어야 이용하실 수 있습니다.');
+      }
+    } catch(e){
+      Fluttertoast.showToast(msg: '호출에 실패하였습니다.');
+    }
+  }
+
   // 파이어스토어 구독 관리
   _setFireStoreSubscription(){
     String userUid = auth.user!.uid;

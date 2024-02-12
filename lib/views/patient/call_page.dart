@@ -11,7 +11,7 @@ class CallPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<PatientViewModel>();
+    final patientViewModel = context.read<PatientViewModel>();
     Timer? timer;
 
     return Scaffold(
@@ -33,7 +33,7 @@ class CallPage extends StatelessWidget {
                     int i = 0;
                     timer = Timer.periodic(const Duration(milliseconds: 700), (timer) async {
                       if(i++ == 1){
-                        await provider.playAudio();
+                        await patientViewModel.callByPatient();
                       }
                     });
                   },

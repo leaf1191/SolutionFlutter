@@ -45,6 +45,11 @@ class NetWorkModel {
     return await dio.get(getWaitNum);
   }
 
+  Future<Response> callByPatient(String? gmail) async{
+    dio.options.headers['Authorization'] = await auth.user?.getIdToken();
+    return await dio.get('$callPatient/$gmail');
+  }
+
   // 미등록 유저
   Future<Response> getNoWaitList() async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
