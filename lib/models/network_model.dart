@@ -34,6 +34,17 @@ class NetWorkModel {
     }
   }
 
+  // 환자 정보 겟
+  Future<Response> getMyInfo() async {
+    dio.options.headers['Authorization'] = await auth.user?.getIdToken();
+    return await dio.get(getUser);
+  }
+
+  Future<Response> getMyWaitNum() async {
+    dio.options.headers['Authorization'] = await auth.user?.getIdToken();
+    return await dio.get(getWaitNum);
+  }
+
   // 미등록 유저
   Future<Response> getNoWaitList() async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();

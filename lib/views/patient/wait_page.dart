@@ -1,14 +1,26 @@
 import 'package:emergency_mate/colors/colors.dart';
+import 'package:emergency_mate/viewmodels/patient/wait_viewmodel.dart';
 import 'package:emergency_mate/widgets/app_bar.dart';
 import 'package:emergency_mate/widgets/basic_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class WaitPage extends StatelessWidget {
   const WaitPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    bool value = false;
+    final waitViewModel = context.read<WaitViewModel>();
+    final waitWatch = context.watch<WaitViewModel>();
+
+    if(waitWatch.waitNum == null){
+      return const Scaffold(
+        body: SafeArea(
+            child: Center(child: CircularProgressIndicator())
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -19,7 +31,7 @@ class WaitPage extends StatelessWidget {
               )
           ),
           child: Column(
-            children: value? [
+            children: waitWatch.isWait? [
               const SizedBox(
                 height: 60,
                 child: BackAppBar(
@@ -57,8 +69,8 @@ class WaitPage extends StatelessWidget {
                                     child: Image.asset('assets/wait/user_img.png')
                                 ),
                             ),
-                            const Expanded(
-                                child: Text('10번',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),)
+                            Expanded(
+                                child: Text('${waitViewModel.waitNum}번',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 30),)
                             ),
                           ],
                         ),
@@ -96,31 +108,31 @@ class WaitPage extends StatelessWidget {
                                 children: [
                                   Expanded(flex: 5,child: Container(
                                         margin: const EdgeInsets.symmetric(horizontal: 20),
-                                        child: const Row(
+                                        child: Row(
                                           children: [
-                                            Text('이름',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 20),),
-                                            SizedBox(width: 5,),
-                                            Text('리얼 이름',style: TextStyle(fontWeight: FontWeight.bold),),
+                                            const Text('이름',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 20),),
+                                            const SizedBox(width: 5,),
+                                            Text('${waitViewModel.myInfo?['name']}',style: const TextStyle(fontWeight: FontWeight.bold),),
                                           ],
                                         ),
                                       ),),
                                   Expanded(flex: 5,child: Container(
                                     margin: const EdgeInsets.symmetric(horizontal: 20),
-                                    child: const Row(
+                                    child: Row(
                                       children: [
-                                        Text('생년월일',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 20),),
-                                        SizedBox(width: 5,),
-                                        Text('24.02.22',style: TextStyle(fontWeight: FontWeight.bold),),
+                                        const Text('생년월일',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 20),),
+                                        const SizedBox(width: 5,),
+                                        Text('${waitViewModel.myInfo?['date']}',style: const TextStyle(fontWeight: FontWeight.bold),),
                                       ],
                                     ),
                                   )),
                                   Expanded(flex: 5,child: Container(
                                     margin: const EdgeInsets.symmetric(horizontal: 20),
-                                    child: const Row(
+                                    child: Row(
                                       children: [
-                                        Text('증상',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 20),),
-                                        SizedBox(width: 5,),
-                                        Text('내 폰 기준 17자 넘으면 깨짐',style: TextStyle(fontWeight: FontWeight.bold),),
+                                        const Text('증상',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 20),),
+                                        const SizedBox(width: 5,),
+                                        Text('${waitViewModel.myInfo?['symptom']}',style: const TextStyle(fontWeight: FontWeight.bold),),
                                       ],
                                     ),
                                   )),
@@ -130,7 +142,7 @@ class WaitPage extends StatelessWidget {
                                   )),
                                   Expanded(flex: 3,child: Container(
                                     margin: const EdgeInsets.symmetric(horizontal: 20),
-                                    child: const Text('010-1234-5678',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                                    child: Text('${waitViewModel.myInfo?['phoneNum']}',style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                                   )),
                                   Expanded(flex: 3,child: Container(
                                     margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -138,7 +150,7 @@ class WaitPage extends StatelessWidget {
                                   )),
                                   Expanded(flex: 3,child: Container(
                                     margin: const EdgeInsets.symmetric(horizontal: 20),
-                                    child: const Text('010-1234-5678',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                                    child: Text('${waitViewModel.myInfo?['phoneNum2']}',style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                                   )),
                                 ],
                               ),
