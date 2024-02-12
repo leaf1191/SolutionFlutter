@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:emergency_mate/colors/colors.dart';
 import 'package:emergency_mate/viewmodels/admin/insert_viewmodel.dart';
 import 'package:emergency_mate/widgets/app_bar.dart';
@@ -191,8 +192,7 @@ class InsertInfo extends StatelessWidget {
                         Fluttertoast.showToast(msg: '등록 성공하였습니다.');
                         // ignore: use_build_context_synchronously
                         Navigator.pop(context);
-                      }catch(e){
-                        print(e);
+                      } on DioException catch(e){
                         Fluttertoast.showToast(msg: '전송에 실패하였습니다.');
                       }
                     },

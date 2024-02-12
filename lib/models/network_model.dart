@@ -37,7 +37,7 @@ class NetWorkModel {
     return await dio.get(getNoWait);
   }
 
-  Future<Response> getUserInfo(int idx) async{
+  Future<Response> getNoWaitUserInfo(int idx) async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
     return await dio.get('/list/$idx');
   }
@@ -45,7 +45,7 @@ class NetWorkModel {
   postUserInfo(Map data) async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
     String jsonData = json.encode(data);
-    var response = await dio.post(postInfo,data: jsonData);
+    await dio.post(postInfo,data: jsonData);
   }
 
 

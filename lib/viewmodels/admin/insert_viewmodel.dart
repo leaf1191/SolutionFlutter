@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:emergency_mate/models/network_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -33,10 +34,10 @@ class InsertViewModel extends ChangeNotifier {
 
   getUserInfo() async {
     try{
-      var response = await _newWork.getUserInfo(idx);
+      var response = await _newWork.getNoWaitUserInfo(idx);
       _userInfo = response.data;
       notifyListeners();
-    } catch(e){
+    } on DioException catch(e){
       Fluttertoast.showToast(msg: '유저 정보를 가져오는데 실패했습니다.');
     }
   }

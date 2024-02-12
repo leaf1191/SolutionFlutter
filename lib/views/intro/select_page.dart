@@ -1,6 +1,4 @@
 import 'package:emergency_mate/colors/colors.dart';
-import 'package:emergency_mate/firebase/auth/firebase_auth.dart';
-import 'package:emergency_mate/http/dio.dart';
 import 'package:emergency_mate/models/network_model.dart';
 import 'package:emergency_mate/viewmodels/intro/intro_viewmodel.dart';
 import 'package:emergency_mate/widgets/app_bar.dart';
