@@ -68,7 +68,7 @@ class InsertViewModel extends ChangeNotifier {
       'phoneNum2' : parentCon.text,
     };
 
-    await _newWork.postUserInfo(newData);
+    await _newWork.postUserInfo(newData, _userInfo!['email']);
   }
 
   setGender(Gender? value){

@@ -42,10 +42,10 @@ class NetWorkModel {
     return await dio.get('/list/$gmail');
   }
 
-  postUserInfo(Map data) async{
+  postUserInfo(Map data, String gmail) async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
     String jsonData = json.encode(data);
-    await dio.post(postInfo,data: jsonData);
+    await dio.post('$postInfo/$gmail',data: jsonData);
   }
 
 
