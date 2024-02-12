@@ -9,13 +9,13 @@ class InsertViewModel extends ChangeNotifier {
 
   final _newWork = NetWorkModel();
 
-  InsertViewModel(this.idx) {
+  InsertViewModel(this._gmail) {
     // 미등록 인원 한명의 정보를 받아와야 함
     getUserInfo();
   }
 
   Map? _userInfo;
-  late final int idx;
+  late final String? _gmail;
   Gender? _gender;
 
   Map? get userInfo => _userInfo;
@@ -34,7 +34,7 @@ class InsertViewModel extends ChangeNotifier {
 
   getUserInfo() async {
     try{
-      var response = await _newWork.getNoWaitUserInfo(idx);
+      var response = await _newWork.getNoWaitUserInfo(_gmail);
       _userInfo = response.data;
       notifyListeners();
     } on DioException catch(e){

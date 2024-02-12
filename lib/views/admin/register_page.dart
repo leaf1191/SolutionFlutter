@@ -47,7 +47,7 @@ class RegisterPage extends StatelessWidget {
                 itemBuilder: (context, i){
                   return GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(i),
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ChangeNotifierProvider(create: (BuildContext context) => InsertViewModel(registerWatch.noWaitList?[i]['email']),
                           child: const InsertInfo()))).then((_) => registerViewModel.getAllUserInfo());
                     },
                     child: Container(
@@ -70,7 +70,7 @@ class RegisterPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Expanded(child: Align(alignment: Alignment.centerLeft,child: Text('G-mail',style: TextStyle(color: MAIN_COLOR,fontWeight: FontWeight.bold,fontSize: 18),))),
-                                Expanded(flex: 2,child: Text('${registerWatch.noWaitList?[i]['email']}',style: TextStyle(color: Colors.grey,fontSize: 18),)),
+                                Expanded(flex: 2,child: Text('${registerWatch.noWaitList?[i]['email']}',style: const TextStyle(color: Colors.grey,fontSize: 18),)),
                               ],
                             )),
                           ],

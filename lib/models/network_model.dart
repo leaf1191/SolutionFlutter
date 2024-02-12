@@ -37,9 +37,9 @@ class NetWorkModel {
     return await dio.get(getNoWait);
   }
 
-  Future<Response> getNoWaitUserInfo(int idx) async{
+  Future<Response> getNoWaitUserInfo(String? gmail) async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
-    return await dio.get('/list/$idx');
+    return await dio.get('/list/$gmail');
   }
 
   postUserInfo(Map data) async{
