@@ -20,6 +20,7 @@ class AudioModel {
   }
 
   playAudio() async{
+    await Future.delayed(const Duration(milliseconds: 100)); // 시작하자마자 호출될때 약간의 딜레이(더 좋은 방법 찾아야 함)
     await _player.play(AssetSource(_path));
     _state = PlayerState.playing;
   }
