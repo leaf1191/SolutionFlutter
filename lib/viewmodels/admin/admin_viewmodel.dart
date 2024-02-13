@@ -46,7 +46,7 @@ class AdminViewModel extends ChangeNotifier {
 
   checkCallByPatient(String? gmail) async{
     try{
-      await _netWork.callByPatient(gmail);
+      await _netWork.checkCallByPatient(gmail);
     } catch(e){
       Fluttertoast.showToast(msg: '확인에 실패하였습니다.');
     }

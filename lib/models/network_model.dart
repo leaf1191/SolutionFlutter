@@ -47,7 +47,7 @@ class NetWorkModel {
 
   Future<Response> callByPatient(String? gmail) async{
     dio.options.headers['Authorization'] = await auth.user?.getIdToken();
-    return await dio.get('$callOffPatient/$gmail');
+    return await dio.get('$callPatient/$gmail');
   }
 
   // 미등록 유저
