@@ -14,6 +14,8 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final patientViewModel = context.read<PatientViewModel>();
 
+    patientViewModel.setBuildContext(context);
+
     if(!(context.watch<PatientViewModel>().initComplete)){
       patientViewModel.initModel();
     }

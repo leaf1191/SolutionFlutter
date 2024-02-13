@@ -12,6 +12,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class PatientViewModel extends ChangeNotifier {
 
+  BuildContext? _context;
   // 모델
   bool _initComplete = false;
   NetWorkModel? _netWork;
@@ -43,6 +44,10 @@ class PatientViewModel extends ChangeNotifier {
     _setFireStoreSubscription();
     _initComplete = true;
   }
+  // context 세터
+  setBuildContext(BuildContext context){
+    _context = context;
+  }
 
   // api 기능
   signOutAndDeleteDB() async => await _netWork!.signOutAndDeleteDB();
@@ -61,9 +66,13 @@ class PatientViewModel extends ChangeNotifier {
   // 파이어스토어 구독 관리
   _setFireStoreSubscription(){
     String userUid = auth.user!.uid;
-    var fireStream = FirebaseFirestore.instance.collection('no_wait_patient/$userUid/test').snapshots();
+    var fireStream = FirebaseFirestore.instance.collection('wait_patient/$userUid/callCheck').snapshots();
     _fireSubscription = fireStream.listen((event) async {
-      print(event.docs);
+      var callData = event.docs[0].data();
+      callData['callPatient']? await _playAudio() : _stopAudio();
+      if(callData['callAdmin'] && _context != null){
+        Navigator.pushNamedAndRemoveUntil(_context!, '/patient/myTurn', ModalRoute.withName('/'));
+      }
     });
   }
 
@@ -73,8 +82,8 @@ class PatientViewModel extends ChangeNotifier {
   }
 
   // 오디오 기능
-  playAudio() async => await _audio!.playAudio();
-  stopAudio() async => await _audio!.stopAudio();
+  _playAudio() async => await _audio!.playAudio();
+  _stopAudio() async => await _audio!.stopAudio();
 
   // 뒤로 두번 누르면 종료
   Future<bool> exitTapTwice() async => await _exit!.exitTapTwice();
