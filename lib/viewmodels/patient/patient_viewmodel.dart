@@ -68,10 +68,12 @@ class PatientViewModel extends ChangeNotifier {
     String userUid = auth.user!.uid;
     var fireStream = FirebaseFirestore.instance.collection('wait_patient/$userUid/callCheck').snapshots();
     _fireSubscription = fireStream.listen((event) async {
-      var callData = event.docs[0].data();
-      callData['callPatient']? await _playAudio() : _stopAudio();
-      if(callData['callAdmin'] && _context != null){
-        Navigator.pushNamedAndRemoveUntil(_context!, '/patient/myTurn', ModalRoute.withName('/'));
+      if(event.docs.isNotEmpty){
+        var callData = event.docs[0].data();
+        callData['callPatient']? await _playAudio() : _stopAudio();
+        if(callData['callAdmin'] && _context != null){
+          Navigator.pushNamedAndRemoveUntil(_context!, '/patient/myTurn', ModalRoute.withName('/'));
+        }
       }
     });
   }
@@ -128,10 +130,14 @@ class PatientViewModel extends ChangeNotifier {
         characters.forEach((character) async {
           if(character.uuid == Guid('FFE1')) {
             await character.setNotifyValue(true);
-            final subscription = character.onValueReceived.listen((value) {
+            final subscription = character.onValueReceived.listen((value) async {
               String str = String.fromCharCodes(value);
               _heartBeat = int.parse(str);
               notifyListeners();
+              // 심박수 40 이하면 호출
+              if(_heartBeat != null && _heartBeat! <= 40){
+                await callByPatient();
+              }
             });
             _blue!.currentDevice!.cancelWhenDisconnected(subscription);
           }
