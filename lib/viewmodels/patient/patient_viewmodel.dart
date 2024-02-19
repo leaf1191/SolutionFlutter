@@ -135,8 +135,12 @@ class PatientViewModel extends ChangeNotifier {
               _heartBeat = int.parse(str);
               notifyListeners();
               // 심박수 40 이하면 호출
-              if(_heartBeat != null && _heartBeat! <= 40){
+              if(_heartBeat != null && (_heartBeat! <= 40 || _heartBeat! >= 120)){
                 await callByPatient();
+                _isWarning = true;
+                notifyListeners();
+              } else {
+                _isWarning = false;
               }
             });
             _blue!.currentDevice!.cancelWhenDisconnected(subscription);
