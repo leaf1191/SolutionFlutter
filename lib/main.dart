@@ -53,6 +53,7 @@ void main() async {
   runApp(ChangeNotifierProvider(
     create: (BuildContext context) => PatientViewModel(),
     child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: MAIN_COLOR)
         ),
